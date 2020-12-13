@@ -13,25 +13,31 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.naman14.timber.R;
+
+/*import com.naman14.timber.R;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+*/
+
 public class LoginActivity extends AppCompatActivity {
     private String TAG = LoginActivity.class.getSimpleName();
-    private EditText    ename;
-    private EditText    epassword;
-    private Button      elogin;
+    private EditText ename;
+    private EditText epassword;
+    private Button elogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        addControl();
-        addEvent();
+        //addControl();
+        //addEvent();
     }
+}
 
-    private void addControl() {
+   /* private void addControl() {
         ename = findViewById(R.id.editTextTextPersonName);
         epassword = findViewById(R.id.editTextTextPersonName2);
         elogin = findViewById(R.id.button);
@@ -80,3 +86,4 @@ public class LoginActivity extends AppCompatActivity {
         });}
 
 }
+*/

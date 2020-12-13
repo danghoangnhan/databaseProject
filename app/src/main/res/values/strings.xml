@@ -166,7 +166,14 @@
     <string name="cast">Cast</string>
     <string name="now_playing_no_track_selected">\"No current track selected.</string>
     <string name="lyrics_loading">Loading...</string>
-
+    <string name="editor">Creator</string>
+    <string name="Music">Music</string>
+    <string name="check_password">Check Password</string>
+    <string name="register">register</string>
+    <string name="register_titile">Register</string>
+    <string name="username">Username</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
     <string name="about_dialog_body"><![CDATA[
     <b>Timber</b> is a fully featured open source music player.<br/><br/>
     Designed and developed by <b>Naman Dwivedi</b>. Check out my
