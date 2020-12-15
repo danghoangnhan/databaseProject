@@ -30,7 +30,6 @@ import android.view.ViewGroup;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.ArtistAdapter;
 import com.naman14.timber.dataloaders.ArtistLoader;
-import com.naman14.timber.models.Artist;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.utils.SortOrder;
 import com.naman14.timber.widgets.BaseRecyclerView;
