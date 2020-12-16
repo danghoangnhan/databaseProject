@@ -21,7 +21,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.naman14.timber.R;
-import com.naman14.timber.dataloaders.ArtistLoader;
 import com.naman14.timber.lastfmapi.LastFmClient;
 import com.naman14.timber.lastfmapi.callbacks.ArtistInfoListener;
 import com.naman14.timber.lastfmapi.models.ArtistQuery;
@@ -52,20 +51,6 @@ public class SimilarArtistFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
                 R.layout.fragment_similar_artists, container, false);
-
-        Artist artist = ArtistLoader.getArtist(getActivity(), artistID);
-
-        LastFmClient.getInstance(getActivity()).getArtistInfo(new ArtistQuery(artist.name), new ArtistInfoListener() {
-            @Override
-            public void artistInfoSucess(LastfmArtist artist) {
-
-            }
-
-            @Override
-            public void artistInfoFailed() {
-            }
-        });
-
         return rootView;
 
     }

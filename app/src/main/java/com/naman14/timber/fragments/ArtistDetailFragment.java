@@ -18,10 +18,13 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -39,7 +42,6 @@ import com.afollestad.appthemeengine.ATE;
 import com.naman14.timber.MusicPlayer;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.ArtistSongAdapter;
-import com.naman14.timber.dataloaders.ArtistLoader;
 import com.naman14.timber.dataloaders.ArtistSongLoader;
 import com.naman14.timber.dialogs.AddPlaylistDialog;
 import com.naman14.timber.lastfmapi.LastFmClient;
@@ -89,6 +91,7 @@ public class ArtistDetailFragment extends Fragment {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
@@ -105,7 +108,6 @@ public class ArtistDetailFragment extends Fragment {
 
         toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
         setupToolbar();
-        setUpArtistDetails();
 
         getChildFragmentManager().beginTransaction().replace(R.id.container, ArtistMusicFragment.newInstance(artistID)).commit();
 
@@ -121,74 +123,6 @@ public class ArtistDetailFragment extends Fragment {
         ab.setDisplayShowTitleEnabled(false);
         ab.setDisplayHomeAsUpEnabled(true);
     }
-
-    private void setUpArtistDetails() {
-
-        final Artist artist = ArtistLoader.getArtist(getActivity(), artistID);
-        List<Song> songList = ArtistSongLoader.getSongsForArtist(getActivity(), artistID);
-        mAdapter = new ArtistSongAdapter(getActivity(), songList, artistID);
-
-        collapsingToolbarLayout.setTitle(artist.name);
-
-        LastFmClient.getInstance(getActivity()).getArtistInfo(new ArtistQuery(artist.name), new ArtistInfoListener() {
-            @Override
-            public void artistInfoSucess(final LastfmArtist artist) {
-                if (artist != null) {
-
-                    ImageLoader.getInstance().displayImage(artist.mArtwork.get(4).mUrl, artistArt,
-                            new DisplayImageOptions.Builder().cacheInMemory(true)
-                                    .cacheOnDisk(true)
-                                    .showImageOnFail(R.drawable.ic_empty_music2)
-                                    .build(), new SimpleImageLoadingListener() {
-                                @Override
-                                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                                    largeImageLoaded = true;
-                                    try {
-                                        new Palette.Builder(loadedImage).generate(new Palette.PaletteAsyncListener() {
-                                            @Override
-                                            public void onGenerated(Palette palette) {
-                                                Palette.Swatch swatch = palette.getVibrantSwatch();
-                                                if (swatch != null) {
-                                                    primaryColor = swatch.getRgb();
-                                                    collapsingToolbarLayout.setContentScrimColor(primaryColor);
-                                                    if (getActivity() != null)
-                                                        ATEUtils.setStatusBarColor(getActivity(), Helpers.getATEKey(getActivity()), primaryColor);
-                                                } else {
-                                                    Palette.Swatch swatchMuted = palette.getMutedSwatch();
-                                                    if (swatchMuted != null) {
-                                                        primaryColor = swatchMuted.getRgb();
-                                                        collapsingToolbarLayout.setContentScrimColor(primaryColor);
-                                                        if (getActivity() != null)
-                                                            ATEUtils.setStatusBarColor(getActivity(), Helpers.getATEKey(getActivity()), primaryColor);
-                                                    }
-                                                }
-
-                                            }
-                                        });
-                                    } catch (Exception ignored) {
-
-                                    }
-                                }
-                            });
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            setBlurredPlaceholder(artist);
-                        }
-                    }, 100);
-
-                }
-            }
-
-            @Override
-            public void artistInfoFailed() {
-
-            }
-        });
-
-    }
-
     private void setBlurredPlaceholder(LastfmArtist artist) {
         ImageLoader.getInstance().loadImage(artist.mArtwork.get(1).mUrl, new SimpleImageLoadingListener() {
             @Override

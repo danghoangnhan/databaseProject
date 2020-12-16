@@ -81,9 +81,7 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
     @Override
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
         Song localItem = arraylist.get(i);
-
         itemHolder.title.setText(localItem.title);
-        itemHolder.artist.setText(localItem.artistName);
 
         ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(),
                 itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
@@ -158,9 +156,6 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
                                 break;
                             case R.id.popup_song_goto_album:
                                 NavigationUtils.goToAlbum(mContext, arraylist.get(position).albumId);
-                                break;
-                            case R.id.popup_song_goto_artist:
-                                NavigationUtils.goToArtist(mContext, arraylist.get(position).artistId);
                                 break;
                             case R.id.popup_song_addto_queue:
                                 long[] id = new long[1];

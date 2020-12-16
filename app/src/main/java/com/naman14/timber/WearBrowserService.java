@@ -29,7 +29,6 @@ import androidx.annotation.Nullable;
 import com.naman14.timber.dataloaders.AlbumLoader;
 import com.naman14.timber.dataloaders.AlbumSongLoader;
 import com.naman14.timber.dataloaders.ArtistAlbumLoader;
-import com.naman14.timber.dataloaders.ArtistLoader;
 import com.naman14.timber.dataloaders.ArtistSongLoader;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dataloaders.PlaylistSongLoader;
@@ -236,15 +235,6 @@ public class WearBrowserService extends MediaBrowserService {
                     addMediaRoots(mediaItems);
                 } else {
                     switch (Integer.parseInt(Character.toString(parentId.charAt(0)))) {
-                        case TYPE_ARTIST:
-                            List<Artist> artistList = ArtistLoader.getAllArtists(mContext);
-                            for (Artist artist : artistList) {
-                                String albumNmber = TimberUtils.makeLabel(mContext, R.plurals.Nalbums, artist.albumCount);
-                                String songCount = TimberUtils.makeLabel(mContext, R.plurals.Nsongs, artist.songCount);
-                                fillMediaItems(mediaItems, Integer.toString(TYPE_ARTIST_SONG_ALBUMS) + Long.toString(artist.id), artist.name, Uri.parse("android.resource://" +
-                                        "naman14.timber/drawable/ic_empty_music2"), TimberUtils.makeCombinedString(mContext, albumNmber, songCount), MediaBrowser.MediaItem.FLAG_BROWSABLE);
-                            }
-                            break;
                         case TYPE_ALBUM:
                             List<Album> albumList = AlbumLoader.getAllAlbums(mContext);
                             for (Album album : albumList) {
@@ -254,13 +244,13 @@ public class WearBrowserService extends MediaBrowserService {
                         case TYPE_SONG:
                             List<Song> songList = SongLoader.getAllSongs(mContext);
                             for (Song song : songList) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId), song.artistName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId),song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
                         case TYPE_ALBUM_SONGS:
                             List<Song> albumSongList = AlbumSongLoader.getSongsForAlbum(mContext, Long.parseLong(parentId.substring(1)));
                             for (Song song : albumSongList) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId), song.artistName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId),song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
                         case TYPE_ARTIST_SONG_ALBUMS:
