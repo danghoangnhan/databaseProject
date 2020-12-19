@@ -85,7 +85,7 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
             }
         });}
-        public static int getUserBId(){
+        public  int getUserBId(){
         return  userBio.getId();
         }
 

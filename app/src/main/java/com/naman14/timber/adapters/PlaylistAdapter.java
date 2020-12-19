@@ -143,7 +143,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
                         songCountInt = lastAddedSongs.size();
                         totalRuntime = 0;
                         for(Song song : lastAddedSongs){
-                                totalRuntime += song.duration / 1000; //for some reason default playlists have songs with durations 1000x larger than they should be
+                            totalRuntime += song.duration / 1000; //for some reason default playlists have songs with durations 1000x larger than they should be
                         }
 
                         if (songCountInt != 0) {
@@ -225,9 +225,9 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
 
         public ItemHolder(View view) {
             super(view);
-            this.title = view.findViewById(R.id.album_title);
-            this.artist = view.findViewById(R.id.album_artist);
-            this.albumArt = view.findViewById(R.id.album_art);
+            this.title = (TextView) view.findViewById(R.id.album_title);
+            this.artist = (TextView) view.findViewById(R.id.album_artist);
+            this.albumArt = (ImageView) view.findViewById(R.id.album_art);
             this.footer = view.findViewById(R.id.footer);
             view.setOnClickListener(this);
         }
@@ -257,7 +257,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
 
 
 }
-
 
 
 
