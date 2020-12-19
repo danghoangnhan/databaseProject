@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.naman14.timber.R;
 import com.naman14.timber.Service.JsonApi;
+import com.naman14.timber.models.authentication;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText ename;
     private EditText epassword;
     private Button elogin;
+    authentication userBio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.isSuccessful()) {
                                 Toast toast=Toast.makeText(LoginActivity.this,"welcome "+ename.getText().toString(),Toast.LENGTH_SHORT);
                                 toast.show();
+                                userBio = response.body();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                                 finish();
@@ -82,6 +85,9 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
             }
         });}
+        public static int getUserBId(){
+        return  userBio.getId();
+        }
 
 }
 
