@@ -269,7 +269,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             loadEverything();
         } else {
             if (Nammu.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                Snackbar.make(panelLayout, "Music Creator will need to read external storage to display songs on your device.",
+                Snackbar.make(panelLayout, "Timber will need to read external storage to display songs on your device.",
                         Snackbar.LENGTH_INDEFINITE)
                         .setAction("OK", new View.OnClickListener() {
                             @Override

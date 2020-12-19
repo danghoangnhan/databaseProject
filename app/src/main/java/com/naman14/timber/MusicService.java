@@ -394,7 +394,7 @@ public class MusicService extends Service {
     }
 
     private void setUpMediaSession() {
-        mSession = new MediaSessionCompat(this, "Music Creator");
+        mSession = new MediaSessionCompat(this, "Timber");
         mSession.setCallback(new MediaSessionCompat.Callback() {
             @Override
             public void onPause() {
@@ -1241,7 +1241,7 @@ public class MusicService extends Service {
 
     private void createNotificationChannel() {
         if (TimberUtils.isOreo()) {
-            CharSequence name = "Music Creator";
+            CharSequence name = "Timber";
             int importance = NotificationManager.IMPORTANCE_LOW;
             NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
             NotificationChannel mChannel = new NotificationChannel(CHANNEL_ID, name, importance);
