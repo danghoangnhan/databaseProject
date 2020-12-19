@@ -33,10 +33,8 @@ import android.view.inputmethod.InputMethodManager;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.SearchAdapter;
 import com.naman14.timber.dataloaders.AlbumLoader;
-import com.naman14.timber.dataloaders.ArtistLoader;
 import com.naman14.timber.dataloaders.SongLoader;
 import com.naman14.timber.models.Album;
-import com.naman14.timber.models.Artist;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.provider.SearchHistory;
 
@@ -230,11 +228,7 @@ public class SearchActivity extends BaseActivity implements SearchView.OnQueryTe
             if (canceled) {
                 return null;
             }
-            List<Artist> artistList = ArtistLoader.getArtists(SearchActivity.this, params[0], 7);
-            if (!artistList.isEmpty()) {
-                results.add(getString(R.string.artists));
-                results.addAll(artistList);
-            }
+
             if (results.size() == 0) {
                 results.add(getString(R.string.nothing_found));
             }

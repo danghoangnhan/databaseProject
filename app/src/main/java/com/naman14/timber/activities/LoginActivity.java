@@ -5,14 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.naman14.timber.R;
+import com.naman14.timber.Service.JsonApi;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

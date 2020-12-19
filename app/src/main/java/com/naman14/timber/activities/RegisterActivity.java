@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.naman14.timber.R;
+import com.naman14.timber.Service.JsonApi;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

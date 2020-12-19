@@ -34,7 +34,6 @@ import com.naman14.timber.lastfmapi.callbacks.ArtistInfoListener;
 import com.naman14.timber.lastfmapi.models.ArtistQuery;
 import com.naman14.timber.lastfmapi.models.LastfmArtist;
 import com.naman14.timber.models.Album;
-import com.naman14.timber.models.Artist;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.TimberUtils;
@@ -109,32 +108,6 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
                                 .displayer(new FadeInBitmapDisplayer(400))
                                 .build());
                 break;
-            case 2:
-                Artist artist = (Artist) searchResults.get(i);
-                itemHolder.artisttitle.setText(artist.name);
-                String albumNmber = TimberUtils.makeLabel(mContext, R.plurals.Nalbums, artist.albumCount);
-                String songCount = TimberUtils.makeLabel(mContext, R.plurals.Nsongs, artist.songCount);
-                itemHolder.albumsongcount.setText(TimberUtils.makeCombinedString(mContext, albumNmber, songCount));
-                LastFmClient.getInstance(mContext).getArtistInfo(new ArtistQuery(artist.name), new ArtistInfoListener() {
-                    @Override
-                    public void artistInfoSucess(LastfmArtist artist) {
-                        if (artist != null && itemHolder.artistImage != null) {
-                            ImageLoader.getInstance().displayImage(artist.mArtwork.get(1).mUrl, itemHolder.artistImage,
-                                    new DisplayImageOptions.Builder().cacheInMemory(true)
-                                            .cacheOnDisk(true)
-                                            .showImageOnFail(R.drawable.ic_empty_music2)
-                                            .resetViewBeforeLoading(true)
-                                            .displayer(new FadeInBitmapDisplayer(400))
-                                            .build());
-                        }
-                    }
-
-                    @Override
-                    public void artistInfoFailed() {
-
-                    }
-                });
-                break;
             case 10:
                 itemHolder.sectionHeader.setText((String) searchResults.get(i));
             case 3:
@@ -174,9 +147,6 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
                             case R.id.popup_song_goto_album:
                                 NavigationUtils.navigateToAlbum(mContext, ((Song) searchResults.get(position)).albumId, null);
                                 break;
-                            case R.id.popup_song_goto_artist:
-                                NavigationUtils.navigateToArtist(mContext, ((Song) searchResults.get(position)).artistId, null);
-                                break;
                             case R.id.popup_song_addto_queue:
                                 MusicPlayer.addToQueue(mContext, song, -1, TimberUtils.IdType.NA);
                                 break;
@@ -202,8 +172,6 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
             return 0;
         if (searchResults.get(position) instanceof Album)
             return 1;
-        if (searchResults.get(position) instanceof Artist)
-            return 2;
         if (searchResults.get(position) instanceof String)
             return 10;
         return 3;
@@ -254,9 +222,6 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
                     break;
                 case 1:
                     NavigationUtils.goToAlbum(mContext, ((Album) searchResults.get(getAdapterPosition())).id);
-                    break;
-                case 2:
-                    NavigationUtils.goToArtist(mContext, ((Artist) searchResults.get(getAdapterPosition())).id);
                     break;
                 case 3:
                     break;

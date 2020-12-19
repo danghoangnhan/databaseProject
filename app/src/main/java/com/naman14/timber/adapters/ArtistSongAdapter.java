@@ -122,9 +122,6 @@ public class ArtistSongAdapter extends BaseSongAdapter<ArtistSongAdapter.ItemHol
                             case R.id.popup_song_goto_album:
                                 NavigationUtils.goToAlbum(mContext, arraylist.get(position + 1).albumId);
                                 break;
-                            case R.id.popup_song_goto_artist:
-                                NavigationUtils.goToArtist(mContext, arraylist.get(position + 1).artistId);
-                                break;
                             case R.id.popup_song_addto_queue:
                                 long[] id = new long[1];
                                 id[0] = arraylist.get(position + 1).id;
