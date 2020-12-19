@@ -174,5 +174,11 @@
     <string name="username">使用者名稱</string>
     <string name="password">密碼</string>
     <string name="login">登入</string>
-    <string name="about_dialog_body">我們是第14組</string>
+    <string name="about_dialog_body"><![CDATA[
+    <b>Timber</b> is a fully featured open source music player.<br/><br/>
+    Designed and developed by <b>Naman Dwivedi</b>. Check out my
+    <a href="https://namand.in">Website</a> and <a href="https://github.com/naman14/Timber">GitHub</a>
+    <br/><br/>Also checkout <a href="https://play.google.com/store/apps/details?id=com.naman14.timberx">TimberX</a>,
+    material themed music player that works across all form factors.
+    ]]></string>
 </resources>
