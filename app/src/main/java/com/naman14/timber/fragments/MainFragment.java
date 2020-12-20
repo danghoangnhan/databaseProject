@@ -98,6 +98,7 @@ public class MainFragment extends Fragment {
         super.onPause();
         if (mPreferences.lastOpenedIsStartPagePreference()) {
             mPreferences.setStartPageIndex(viewPager.getCurrentItem());
+            
         }
     }
 

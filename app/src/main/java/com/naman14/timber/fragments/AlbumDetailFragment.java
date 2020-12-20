@@ -94,12 +94,12 @@ public class AlbumDetailFragment extends Fragment {
     private int primaryColor = -1;
 
     public static AlbumDetailFragment newInstance(long id, boolean useTransition, String transitionName) {
-        AlbumDetailFragment fragment = new AlbumDetailFragment();
-        Bundle args = new Bundle();
-        args.putLong(Constants.ALBUM_ID, id);
-        args.putBoolean("transition", useTransition);
+        AlbumDetailFragment fragment = new AlbumDetailFragment();//transfer some data to another fragment
+        Bundle args = new Bundle();//transfer some data to another fragment,Bundle類別可以保存Activity上一次關閉(stop)時的狀態
+        args.putLong(Constants.ALBUM_ID, id);//把參數放入,put是一種method
+        args.putBoolean("transition", useTransition);//把參數放入
         if (useTransition)
-            args.putString("transition_name", transitionName);
+            args.putString("transition_name", transitionName);//把參數放入
         fragment.setArguments(args);
         return fragment;
     }
@@ -108,11 +108,11 @@ public class AlbumDetailFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            albumID = getArguments().getLong(Constants.ALBUM_ID);
+            albumID = getArguments().getLong(Constants.ALBUM_ID);//取得參數
         }
-        context = getActivity();
-        mContext = (AppCompatActivity) context;
-        mPreferences = PreferencesUtility.getInstance(context);
+        context = getActivity();//取得參數
+        mContext = (AppCompatActivity) context;//取得參數
+        mPreferences = PreferencesUtility.getInstance(context);//取得參數
     }
 
     @TargetApi(21)
@@ -121,8 +121,8 @@ public class AlbumDetailFragment extends Fragment {
         final View rootView = inflater.inflate(
                 R.layout.fragment_album_detail, container, false);
 
-        albumArt = (ImageView) rootView.findViewById(R.id.album_art);
-        artistArt = (ImageView) rootView.findViewById(R.id.artist_art);
+        albumArt = (ImageView) rootView.findViewById(R.id.album_art);//放入圖片
+        artistArt = (ImageView) rootView.findViewById(R.id.artist_art);//放入圖片
         albumTitle = (TextView) rootView.findViewById(R.id.album_title);
         albumDetails = (TextView) rootView.findViewById(R.id.album_details);
 
