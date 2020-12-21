@@ -16,19 +16,19 @@ package com.naman14.timber.models;
 
 public class Playlist {
 
-    public final long id;
-    public final String name;
-    public final int songCount;
+    public final long listId;
+    public final String platListName;
+    public final long userId;
 
     public Playlist() {
-        this.id = -1;
-        this.name = "";
-        this.songCount = -1;
+        this. listId= -1;
+        this.platListName = "";
+        this.userId = -1;
     }
 
-    public Playlist(long _id, String _name, int _songCount) {
-        this.id = _id;
-        this.name = _name;
-        this.songCount = _songCount;
+    public Playlist(long _listId, String _platListName, long _userId) {
+        this.listId= _listId;
+        this.platListName = _platListName;
+        this.userId = _userId;
     }
 }

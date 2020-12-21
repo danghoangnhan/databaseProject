@@ -68,12 +68,12 @@ public final class PreferencesUtility {
 
     public PreferencesUtility(final Context context) {
         this.context = context;
-        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        mPreferences = PreferenceManager.getDefaultSharedPreferences(context);//用來儲存資料，離開app前的使用狀態
     }
 
     public static final PreferencesUtility getInstance(final Context context) {
         if (sInstance == null) {
-            sInstance = new PreferencesUtility(context.getApplicationContext());
+            sInstance = new PreferencesUtility(context.getApplicationContext());//獲得程序的context(環境)
         }
         return sInstance;
     }

@@ -34,7 +34,6 @@ import com.naman14.timber.R;
 import com.naman14.timber.adapters.SearchAdapter;
 import com.naman14.timber.dataloaders.AlbumLoader;
 import com.naman14.timber.dataloaders.SongLoader;
-import com.naman14.timber.models.Album;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.provider.SearchHistory;
 
