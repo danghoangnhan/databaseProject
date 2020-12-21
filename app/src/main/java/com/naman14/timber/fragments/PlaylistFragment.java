@@ -28,6 +28,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -37,6 +38,9 @@ import android.view.ViewGroup;
 
 import com.afollestad.appthemeengine.ATE;
 import com.naman14.timber.R;
+import com.naman14.timber.Service.ApiService;
+import com.naman14.timber.Service.JsonApi;
+import com.naman14.timber.activities.LoginActivity;
 import com.naman14.timber.adapters.PlaylistAdapter;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
@@ -49,6 +53,12 @@ import com.naman14.timber.widgets.MultiViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import com.naman14.timber.activities.LoginActivity;
 
 public class PlaylistFragment extends Fragment {
 
@@ -79,12 +89,11 @@ public class PlaylistFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(
-                R.layout.fragment_playlist, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
 
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        pager = (MultiViewPager) rootView.findViewById(R.id.playlistpager);
-        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerview);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
+        pager = rootView.findViewById(R.id.playlistpager);
+        recyclerView = rootView.findViewById(R.id.recyclerview);
 
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -105,6 +114,21 @@ public class PlaylistFragment extends Fragment {
 
         return rootView;
 
+    }
+    private void getPlayLists(){
+        JsonApi service =  ApiService.getService();
+        Call<List<Playlist>>  Playlists = service.getPlaylist(LoginActivity.getUserBId());
+        Playlists.enqueue(new Callback<List<Playlist>>() {
+            @Override
+            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+
+            }
+        });
     }
 
 
@@ -134,9 +158,7 @@ public class PlaylistFragment extends Fragment {
         pager.setVisibility(View.GONE);
         setLayoutManager();
         mAdapter = new PlaylistAdapter(getActivity(), playlists);
-
         recyclerView.setAdapter(mAdapter);
-        //to add spacing between cards
         if (getActivity() != null) {
             setItemDecoration();
         }

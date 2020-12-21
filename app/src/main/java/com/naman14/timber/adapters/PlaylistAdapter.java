@@ -143,7 +143,7 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
                         songCountInt = lastAddedSongs.size();
                         totalRuntime = 0;
                         for(Song song : lastAddedSongs){
-                                totalRuntime += song.duration / 1000; //for some reason default playlists have songs with durations 1000x larger than they should be
+                            totalRuntime += song.duration / 1000; //for some reason default playlists have songs with durations 1000x larger than they should be
                         }
 
                         if (songCountInt != 0) {
@@ -257,7 +257,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ItemHo
 
 
 }
-
 
 
 

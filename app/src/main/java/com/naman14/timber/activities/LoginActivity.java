@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText ename;
     private EditText epassword;
     private Button elogin;
+    authentication userBio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (response.isSuccessful()) {
                                 Toast toast=Toast.makeText(LoginActivity.this,"welcome "+ename.getText().toString(),Toast.LENGTH_SHORT);
                                 toast.show();
+                                userBio = response.body();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                                 finish();
@@ -82,6 +84,9 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
             }
         });}
+        public  int getUserBId(){
+        return  userBio.getId();
+        }
 
 }
 

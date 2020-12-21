@@ -96,8 +96,14 @@ public class MainFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
+<<<<<<< HEAD
         if (mPreferences.lastOpenedIsStartPagePreference()) {//如果最後打開的是起始頁首選項
             mPreferences.setStartPageIndex(viewPager.getCurrentItem());//根據目前的頁面設置起始頁索引
+=======
+        if (mPreferences.lastOpenedIsStartPagePreference()) {
+            mPreferences.setStartPageIndex(viewPager.getCurrentItem());
+            
+>>>>>>> 954c14c33605d2003a3cfc978ea4ddbcf82baaa6
         }
     }
 
