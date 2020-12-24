@@ -63,41 +63,8 @@ public class NavigationUtils {
 
     }
 
-    @TargetApi(21)
-    public static void navigateToArtist(Activity context, long artistID, Pair<View, String> transitionViews) {
 
-        FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
-        Fragment fragment;
 
-        transaction.setCustomAnimations(R.anim.activity_fade_in,
-                R.anim.activity_fade_out, R.anim.activity_fade_in, R.anim.activity_fade_out);
-        fragment = ArtistDetailFragment.newInstance(artistID, false, null);
-
-        transaction.hide(((AppCompatActivity) context).getSupportFragmentManager().findFragmentById(R.id.fragment_container));
-        transaction.add(R.id.fragment_container, fragment);
-        transaction.addToBackStack(null).commit();
-
-    }
-
-    public static void goToArtist(Context context, long artistId) {
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.setAction(Constants.NAVIGATE_ARTIST);
-        intent.putExtra(Constants.ARTIST_ID, artistId);
-        context.startActivity(intent);
-    }
-
-    public static void goToAlbum(Context context, long albumId) {
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.setAction(Constants.NAVIGATE_ALBUM);
-        intent.putExtra(Constants.ALBUM_ID, albumId);
-        context.startActivity(intent);
-    }
-
-    public static void goToLyrics(Context context) {
-        Intent intent = new Intent(context, MainActivity.class);
-        intent.setAction(Constants.NAVIGATE_LYRICS);
-        context.startActivity(intent);
-    }
 
     public static void navigateToNowplaying(Activity context, boolean withAnimations) {
 
@@ -127,12 +94,11 @@ public class NavigationUtils {
 
 
     @TargetApi(21)
-    public static void navigateToPlaylistDetail(Activity context, String action, long firstAlbumID, String playlistName, int foregroundcolor, long playlistID, ArrayList<Pair> transitionViews) {
+    public static void navigateToPlaylistDetail(Activity context, String action, String playlistName, int foregroundcolor, long playlistID, ArrayList<Pair> transitionViews) {
         final Intent intent = new Intent(context, PlaylistDetailActivity.class);
         intent.setAction(action);
         intent.putExtra(Constants.PLAYLIST_ID, playlistID);
         intent.putExtra(Constants.PLAYLIST_FOREGROUND_COLOR, foregroundcolor);
-        intent.putExtra(Constants.ALBUM_ID, firstAlbumID);
         intent.putExtra(Constants.PLAYLIST_NAME, playlistName);
         intent.putExtra(Constants.ACTIVITY_TRANSITION, transitionViews != null);
 

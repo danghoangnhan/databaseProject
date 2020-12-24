@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class LoginActivity extends AppCompatActivity {
+    private static authentication userBio;
     private String TAG = LoginActivity.class.getSimpleName();
     private EditText ename;
     private EditText epassword;
     private Button elogin;
-    authentication userBio;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,18 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     if (epassword == null && ename == null)
                         return;
+
                     elogin.setEnabled(true);
+
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://140.136.151.130/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
+
                     JsonApi Jsonapi = retrofit.create(JsonApi.class);
+
                     Call<authentication> placeHolderApis = Jsonapi.login(ename.getText().toString(), epassword.getText().toString());
+
                     placeHolderApis.enqueue(new Callback<authentication>() {
                         @Override
                         public void onResponse(@NonNull Call<authentication> call, @NonNull Response<authentication> response) {
@@ -77,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                             t.printStackTrace();
                         }
                     });
+
                 }
                 catch (Exception e){
                     Toast toast=Toast.makeText(LoginActivity.this,e.toString(),Toast.LENGTH_SHORT);
@@ -85,8 +91,8 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
             }
         });}
-        public  int getUserBId(){
-        return  userBio.getId();
+        public static authentication getUser(){
+        return  userBio;
         }
 
 }

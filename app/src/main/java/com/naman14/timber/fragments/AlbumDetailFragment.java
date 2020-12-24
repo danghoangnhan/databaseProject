@@ -309,9 +309,6 @@ public class AlbumDetailFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_go_to_artist:
-                NavigationUtils.goToArtist(getContext(), album.artistId);
-                break;
             case R.id.popup_song_addto_queue:
                 MusicPlayer.addToQueue(context, mAdapter.getSongIds(), -1, TimberUtils.IdType.NA);
                 break;

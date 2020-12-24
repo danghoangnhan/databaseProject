@@ -45,13 +45,13 @@ public class PlaylistLoader {
         if (mCursor != null && mCursor.moveToFirst()) {
             do {
 
-                final long id = mCursor.getLong(0);
+                final int id = mCursor.getInt(0);
 
                 final String name = mCursor.getString(1);
 
                 final int songCount = TimberUtils.getSongCountForPlaylist(context, id);
 
-                final Playlist playlist = new Playlist(id, name, songCount);
+                final Playlist playlist = new Playlist((int)id, name, songCount);
 
                 mPlaylistList.add(playlist);
             } while (mCursor.moveToNext());
@@ -67,17 +67,17 @@ public class PlaylistLoader {
         final Resources resources = context.getResources();
 
         /* Last added list */
-        final Playlist lastAdded = new Playlist(TimberUtils.PlaylistType.LastAdded.mId,
+        final Playlist lastAdded = new Playlist((int) TimberUtils.PlaylistType.LastAdded.mId,
                 resources.getString(TimberUtils.PlaylistType.LastAdded.mTitleId), -1);
         mPlaylistList.add(lastAdded);
 
         /* Recently Played */
-        final Playlist recentlyPlayed = new Playlist(TimberUtils.PlaylistType.RecentlyPlayed.mId,
+        final Playlist recentlyPlayed = new Playlist((int) TimberUtils.PlaylistType.RecentlyPlayed.mId,
                 resources.getString(TimberUtils.PlaylistType.RecentlyPlayed.mTitleId), -1);
         mPlaylistList.add(recentlyPlayed);
 
         /* Top Tracks */
-        final Playlist topTracks = new Playlist(TimberUtils.PlaylistType.TopTracks.mId,
+        final Playlist topTracks = new Playlist((int) TimberUtils.PlaylistType.TopTracks.mId,
                 resources.getString(TimberUtils.PlaylistType.TopTracks.mTitleId), -1);
         mPlaylistList.add(topTracks);
     }

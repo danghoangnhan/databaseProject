@@ -221,7 +221,6 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
 
                     break;
                 case 1:
-                    NavigationUtils.goToAlbum(mContext, ((Album) searchResults.get(getAdapterPosition())).id);
                     break;
                 case 3:
                     break;

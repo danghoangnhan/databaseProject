@@ -20,133 +20,140 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.Toolbar;
-
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.appthemeengine.ATE;
+import com.google.gson.internal.bind.ReflectiveTypeAdapterFactory;
 import com.naman14.timber.R;
 import com.naman14.timber.Service.ApiService;
 import com.naman14.timber.Service.JsonApi;
 import com.naman14.timber.activities.LoginActivity;
+import com.naman14.timber.activities.MainActivity;
 import com.naman14.timber.adapters.PlaylistAdapter;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
 import com.naman14.timber.models.Playlist;
+import com.naman14.timber.models.authentication;
 import com.naman14.timber.subfragments.PlaylistPagerFragment;
 import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.widgets.DividerItemDecoration;
 import com.naman14.timber.widgets.MultiViewPager;
 
+
 import java.util.ArrayList;
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
-import com.naman14.timber.activities.LoginActivity;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaylistFragment extends Fragment {
 
-    private int playlistcount;
     private FragmentStatePagerAdapter adapter;
     private MultiViewPager pager;
     private RecyclerView recyclerView;
     private GridLayoutManager layoutManager;
     private RecyclerView.ItemDecoration itemDecoration;
-
     private PreferencesUtility mPreferences;
-    private boolean isGrid;
-    private boolean isDefault;
-    private boolean showAuto;
+    private  int playlistcount;
+    ArrayList<Playlist> returnPlaylist;
+
+
     private PlaylistAdapter mAdapter;
 
-    private List<Playlist> playlists = new ArrayList<>();
+    private List<Playlist> playlists ;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPreferences = PreferencesUtility.getInstance(getActivity());
-        isGrid = mPreferences.getPlaylistView() == Constants.PLAYLIST_VIEW_GRID;
-        isDefault = mPreferences.getPlaylistView() == Constants.PLAYLIST_VIEW_DEFAULT;
-        showAuto = mPreferences.showAutoPlaylist();
+        getPlayLists();
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
-
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         pager = rootView.findViewById(R.id.playlistpager);
         recyclerView = rootView.findViewById(R.id.recyclerview);
-
-
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(R.string.playlists);
-
-        playlists = PlaylistLoader.getPlaylists(getActivity(), showAuto);
-        playlistcount = playlists.size();
-
-        if (isDefault) {
-            initPager();
-        } else {
-            initRecyclerView();
-        }
-
+        getPlayLists();
+        initRecyclerView();
         return rootView;
-
     }
+
+
+
+
     private void getPlayLists(){
-        JsonApi service =  ApiService.getService();
-        Call<List<Playlist>>  Playlists = service.getPlaylist(LoginActivity.getUserBId());
-        Playlists.enqueue(new Callback<List<Playlist>>() {
-            @Override
-            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+        try{
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://140.136.151.130/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
+        JsonApi Jsonapi = retrofit.create(JsonApi.class);
+
+        Call<List<Playlist>> placeHolderApis = Jsonapi.getPlaylist(LoginActivity.getUser().getId());
+
+        placeHolderApis.enqueue(new Callback<List<Playlist>>() {
+            @Override
+            public void onResponse(@NonNull Call<List<Playlist>> call, @NonNull Response<List<Playlist>> response) {
+                if (response.isSuccessful()) {
+                    returnPlaylist = new ArrayList<>(response.body().size());
+                    returnPlaylist.addAll(response.body());
+                }
             }
-
             @Override
-            public void onFailure(Call<List<Playlist>> call, Throwable t) {
-
+            public void onFailure(@NonNull Call<List<Playlist>> call, @NonNull Throwable t) {
+                Toast toast=Toast.makeText(getActivity(),"login failed",Toast.LENGTH_SHORT);
+                toast.show();
+                t.printStackTrace();
             }
         });
+
+    }
+                catch (Exception e){
+                    Toast toast=Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_SHORT);
+                    toast.show();
+                }
     }
 
 
     private void initPager() {
         pager.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.GONE);
-        recyclerView.setAdapter(null);
+        recyclerView.setAdapter(mAdapter);
         adapter = new FragmentStatePagerAdapter(getChildFragmentManager()) {
 
             @Override
-            public int getCount() {
-                return playlistcount;
-            }
+            public int getCount() { return returnPlaylist.size(); }
 
             @Override
-            public Fragment getItem(int position) {
-                return PlaylistPagerFragment.newInstance(position);
-            }
+            public Fragment getItem(int position) { return PlaylistPagerFragment.newInstance(position); }
 
         };
         pager.setAdapter(adapter);
@@ -157,7 +164,7 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setVisibility(View.VISIBLE);
         pager.setVisibility(View.GONE);
         setLayoutManager();
-        mAdapter = new PlaylistAdapter(getActivity(), playlists);
+        mAdapter = new PlaylistAdapter(getContext(),returnPlaylist);
         recyclerView.setAdapter(mAdapter);
         if (getActivity() != null) {
             setItemDecoration();
@@ -166,27 +173,18 @@ public class PlaylistFragment extends Fragment {
 
 
     private void setLayoutManager() {
-        if (isGrid) {
-            layoutManager = new GridLayoutManager(getActivity(), 2);
-        } else {
             layoutManager = new GridLayoutManager(getActivity(), 1);
-        }
-        recyclerView.setLayoutManager(layoutManager);
+            recyclerView.setLayoutManager(layoutManager);
     }
 
     private void setItemDecoration() {
-        if (isGrid) {
-            int spacingInPixels = getActivity().getResources().getDimensionPixelSize(R.dimen.spacing_card_album_grid);
-            itemDecoration = new SpacesItemDecoration(spacingInPixels);
-        } else {
             itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
-        }
         recyclerView.addItemDecoration(itemDecoration);
-    }
+   }
 
     private void updateLayoutManager(int column) {
         recyclerView.removeItemDecoration(itemDecoration);
-        recyclerView.setAdapter(new PlaylistAdapter(getActivity(), PlaylistLoader.getPlaylists(getActivity(), showAuto)));
+        recyclerView.setAdapter(new PlaylistAdapter(getActivity(), returnPlaylist));
         layoutManager.setSpanCount(column);
         layoutManager.requestLayout();
         setItemDecoration();
@@ -213,7 +211,6 @@ public class PlaylistFragment extends Fragment {
         }
     }
 
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -234,15 +231,12 @@ public class PlaylistFragment extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_playlist, menu);
-
     }
 
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         super.onPrepareOptionsMenu(menu);
-        if (showAuto) {
-            menu.findItem(R.id.action_view_auto_playlists).setTitle("Hide auto playlists");
-        } else menu.findItem(R.id.action_view_auto_playlists).setTitle("Show auto playlists");
+        menu.findItem(R.id.action_view_auto_playlists).setTitle("Show auto playlists");
     }
 
     @Override
@@ -253,31 +247,20 @@ public class PlaylistFragment extends Fragment {
                 return true;
             case R.id.menu_show_as_list:
                 mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_LIST);
-                isGrid = false;
-                isDefault = false;
                 initRecyclerView();
                 updateLayoutManager(1);
                 return true;
             case R.id.menu_show_as_grid:
                 mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_GRID);
-                isGrid = true;
-                isDefault = false;
                 initRecyclerView();
                 updateLayoutManager(2);
                 return true;
             case R.id.menu_show_as_default:
                 mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_DEFAULT);
-                isDefault = true;
                 initPager();
                 return true;
             case R.id.action_view_auto_playlists:
-                if (showAuto) {
-                    showAuto = false;
-                    mPreferences.setToggleShowAutoPlaylist(false);
-                } else {
-                    showAuto = true;
                     mPreferences.setToggleShowAutoPlaylist(true);
-                }
                 reloadPlaylists();
                 getActivity().invalidateOptionsMenu();
                 break;
@@ -287,47 +270,21 @@ public class PlaylistFragment extends Fragment {
     }
 
     public void updatePlaylists(final long id) {
-        playlists = PlaylistLoader.getPlaylists(getActivity(), showAuto);
+        getPlayLists();
+        playlists = returnPlaylist;
         playlistcount = playlists.size();
-
-        if (isDefault) {
-            adapter.notifyDataSetChanged();
-            if (id != -1) {
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        for (int i = 0; i < playlists.size(); i++) {
-                            long playlistid = playlists.get(i).id;
-                            if (playlistid == id) {
-                                pager.setCurrentItem(i);
-                                break;
-                            }
-                        }
-                    }
-                }, 200);
-            }
-
-        } else {
-            mAdapter.updateDataSet(playlists);
-        }
+        mAdapter.updateDataSet(playlists);
     }
 
     public void reloadPlaylists() {
-        playlists = PlaylistLoader.getPlaylists(getActivity(), showAuto);
-        playlistcount = playlists.size();
-
-        if (isDefault) {
-            initPager();
-        } else {
+        getPlayLists();
+        playlists = returnPlaylist;
             initRecyclerView();
-        }
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == Constants.ACTION_DELETE_PLAYLIST) {
             if (resultCode == Activity.RESULT_OK) {
                 reloadPlaylists();

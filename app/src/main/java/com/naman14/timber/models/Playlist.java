@@ -14,11 +14,23 @@
 
 package com.naman14.timber.models;
 
-public class Playlist {
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public final long listId;
+public class Playlist {
+    @SerializedName("listId")
+    @Expose
+    public final int listId;
+
+    @SerializedName("playlistName")
+    @Expose
     public final String playlistName;
+
+    @SerializedName(" userId")
+    @Expose
     public final long userId;
+
+    public int songCount;
 
     public Playlist() {
         this.listId = -1;
@@ -26,7 +38,19 @@ public class Playlist {
         this.userId = -1;
     }
 
-    public Playlist(long _listId, String _playlistName , long _userId) {
+    public int getListId() {
+        return listId;
+    }
+
+    public String getPlaylistName() {
+        return playlistName;
+    }
+
+    public long getUserId() {
+        return userId;
+    }
+
+    public Playlist(int _listId, String _playlistName , long _userId) {
         this.listId = _listId;
         this.playlistName = _playlistName;
         this.userId = _userId;

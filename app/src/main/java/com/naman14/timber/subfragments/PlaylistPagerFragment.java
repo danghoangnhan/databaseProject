@@ -80,12 +80,12 @@ public class PlaylistPagerFragment extends Fragment {
         pageNumber = getArguments().getInt(ARG_PAGE_NUMBER);
         playlist = playlists.get(pageNumber);
 
-        playlistame = (TextView) rootView.findViewById(R.id.name);
-        playlistnumber = (TextView) rootView.findViewById(R.id.number);
-        songcount = (TextView) rootView.findViewById(R.id.songcount);
-        runtime = (TextView) rootView.findViewById(R.id.runtime);
-        playlisttype = (TextView) rootView.findViewById(R.id.playlisttype);
-        playlistImage = (ImageView) rootView.findViewById(R.id.playlist_image);
+        playlistame = rootView.findViewById(R.id.name);
+        playlistnumber = rootView.findViewById(R.id.number);
+        songcount = rootView.findViewById(R.id.songcount);
+        runtime = rootView.findViewById(R.id.runtime);
+        playlisttype = rootView.findViewById(R.id.playlisttype);
+        playlistImage = rootView.findViewById(R.id.playlist_image);
         foreground = rootView.findViewById(R.id.foreground);
 
         playlistImage.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,7 @@ public class PlaylistPagerFragment extends Fragment {
                 tranitionViews.add(0, Pair.create((View) playlistame, "transition_playlist_name"));
                 tranitionViews.add(1, Pair.create((View) playlistImage, "transition_album_art"));
                 tranitionViews.add(2, Pair.create(foreground, "transition_foreground"));
-                NavigationUtils.navigateToPlaylistDetail(getActivity(), getPlaylistType(), firstAlbumID, String.valueOf(playlistame.getText()), foregroundColor, playlist.id, tranitionViews);
+                NavigationUtils.navigateToPlaylistDetail(getActivity(), getPlaylistType(),  String.valueOf(playlistame.getText()),playlist.getListId(), foregroundColor, tranitionViews);
             }
         });
 
@@ -111,7 +111,7 @@ public class PlaylistPagerFragment extends Fragment {
     }
 
     private void setUpPlaylistDetails() {
-        playlistame.setText(playlist.name);
+        playlistame.setText(playlist.getPlaylistName());
 
         int number = getArguments().getInt(ARG_PAGE_NUMBER) + 1;
         String playlistnumberstring;
@@ -193,7 +193,7 @@ public class PlaylistPagerFragment extends Fragment {
                                 return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                             } else return "nosongs";
                         default:
-                            List<Song> playlistsongs = PlaylistSongLoader.getSongsInPlaylist(getActivity(), playlist.id);
+                            List<Song> playlistsongs = PlaylistSongLoader.getSongsInPlaylist(getActivity(), playlist.getListId());
                             songCountInt = playlistsongs.size();
                             for(Song song : playlistsongs){
                                 totalRuntime += song.duration;
@@ -205,7 +205,7 @@ public class PlaylistPagerFragment extends Fragment {
 
                     }
                 } else {
-                    List<Song> playlistsongs = PlaylistSongLoader.getSongsInPlaylist(getActivity(), playlist.id);
+                    List<Song> playlistsongs = PlaylistSongLoader.getSongsInPlaylist(getActivity(), playlist.getListId());
                     songCountInt = playlistsongs.size();
                     for(Song song : playlistsongs){
                         totalRuntime += song.duration;

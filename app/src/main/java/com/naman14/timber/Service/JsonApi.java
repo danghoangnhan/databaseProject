@@ -18,5 +18,5 @@ public interface JsonApi {
     @GET("getSongByPlayListId")
     Call<Song> getSongByPlayListId(@Query("Id") int id);
     @GET("getPlayList")
-    Call<List<Playlist>> getPlaylist(@Query("Id") int id);
+    Call<List<Playlist>> getPlaylist(@Query("userid") int id);
 }

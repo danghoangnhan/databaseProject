@@ -273,7 +273,7 @@ public class WearBrowserService extends MediaBrowserService {
                             List<Playlist> playlistList = PlaylistLoader.getPlaylists(mContext, false);
                             for (Playlist playlist : playlistList) {
                                 String songCount = TimberUtils.makeLabel(mContext, R.plurals.Nsongs, playlist.songCount);
-                                fillMediaItems(mediaItems, Integer.toString(TYPE_PLAYLIST_ALL_SONGS) + Long.toString(playlist.id), playlist.name,
+                                fillMediaItems(mediaItems, Integer.toString(TYPE_PLAYLIST_ALL_SONGS) + Long.toString(playlist.getListId()), playlist.getPlaylistName(),
                                         Uri.parse("android.resource://" +
                                                 "naman14.timber/drawable/ic_empty_music2"), songCount, MediaBrowser.MediaItem.FLAG_BROWSABLE);
                             }

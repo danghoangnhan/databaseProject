@@ -42,7 +42,7 @@ public class AddPlaylistDialog extends DialogFragment {
         chars[0] = "Create new playlist";
 
         for (int i = 0; i < playlists.size(); i++) {
-            chars[i + 1] = playlists.get(i).name;
+            chars[i + 1] = playlists.get(i).playlistName;
         }
         return new MaterialDialog.Builder(getActivity()).title("Add to playlist").items(chars).itemsCallback(new MaterialDialog.ListCallback() {
             @Override
@@ -53,7 +53,7 @@ public class AddPlaylistDialog extends DialogFragment {
                     return;
                 }
 
-                MusicPlayer.addToPlaylist(getActivity(), songs, playlists.get(which - 1).id);
+                MusicPlayer.addToPlaylist(getActivity(), songs, playlists.get(which - 1).listId);
                 dialog.dismiss();
 
             }
