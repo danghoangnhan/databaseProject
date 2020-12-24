@@ -32,7 +32,6 @@ import com.naman14.timber.lastfmapi.LastFmClient;
 import com.naman14.timber.lastfmapi.callbacks.AlbumInfoListener;
 import com.naman14.timber.lastfmapi.models.AlbumQuery;
 import com.naman14.timber.lastfmapi.models.LastfmAlbum;
-import com.naman14.timber.models.Album;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;

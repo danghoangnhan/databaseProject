@@ -30,7 +30,6 @@ import android.view.ViewGroup;
 import com.naman14.timber.R;
 import com.naman14.timber.adapters.AlbumAdapter;
 import com.naman14.timber.dataloaders.AlbumLoader;
-import com.naman14.timber.models.Album;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.utils.SortOrder;
 import com.naman14.timber.widgets.BaseRecyclerView;
