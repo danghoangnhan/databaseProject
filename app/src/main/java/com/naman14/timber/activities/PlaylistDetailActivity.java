@@ -110,7 +110,7 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
 
         action = getIntent().getAction();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -121,15 +121,13 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_TOPTRACKS, playlistToptracks);
         playlistsMap.put(Constants.NAVIGATE_PLAYLIST_USERCREATED, playlistUsercreated);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        blurFrame = (ImageView) findViewById(R.id.blurFrame);
-        playlistname = (TextView) findViewById(R.id.name);
+        recyclerView = findViewById(R.id.recyclerview);
+        blurFrame = findViewById(R.id.blurFrame);
+        playlistname = findViewById(R.id.name);
         foreground = findViewById(R.id.foreground);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         setAlbumart();
-
         animate = getIntent().getBooleanExtra(Constants.ACTIVITY_TRANSITION, false);
         if (animate && TimberUtils.isLollipop()) {
             if(savedInstanceState != null && savedInstanceState.containsKey("ROTATION_RECREATION")){
