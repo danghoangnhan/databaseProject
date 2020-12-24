@@ -79,7 +79,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_library).setChecked(true);
             Fragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();
+            transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();//載入Mainfragament，不會拋出異常版本的commit()方法，會新增動作
+
 
         }
     };

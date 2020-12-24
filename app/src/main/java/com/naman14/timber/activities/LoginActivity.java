@@ -50,18 +50,23 @@ public class LoginActivity extends AppCompatActivity {
                     if (epassword == null && ename == null)
                         return;
                     elogin.setEnabled(true);
+
                     Retrofit retrofit = new Retrofit.Builder()
                             .baseUrl("http://140.136.151.130/")
                             .addConverterFactory(GsonConverterFactory.create())
                             .build();
                     JsonApi Jsonapi = retrofit.create(JsonApi.class);
+                    //@POST("login")
+                    //    Call<authentication> login(@Query("usenamre") String username, @Query("password") String password);
                     Call<authentication> placeHolderApis = Jsonapi.login(ename.getText().toString(), epassword.getText().toString());
                     placeHolderApis.enqueue(new Callback<authentication>() {
                         @Override
                         public void onResponse(@NonNull Call<authentication> call, @NonNull Response<authentication> response) {
-                            if (response.isSuccessful()) {
+                            if (response.isSuccessful()) {//issuccessful() = status(200)
+
                                 Toast toast=Toast.makeText(LoginActivity.this,"welcome "+ename.getText().toString(),Toast.LENGTH_SHORT);
                                 toast.show();
+
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                                 finish();

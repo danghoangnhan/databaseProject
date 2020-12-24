@@ -53,16 +53,19 @@ import java.util.List;
 public class PlaylistFragment extends Fragment {
 
     private int playlistcount;
-    private FragmentStatePagerAdapter adapter;
-    private MultiViewPager pager;
-    private RecyclerView recyclerView;
-    private GridLayoutManager layoutManager;
-    private RecyclerView.ItemDecoration itemDecoration;
+    private FragmentStatePagerAdapter adapter;//宣告adapter
+    private MultiViewPager pager;//宣告pager
+    private RecyclerView recyclerView;//recycleview創建列表
+    private GridLayoutManager layoutManager;//九宮格式的呈現list(原本是使用gridview來呈現，但是近期recycle view 可以利用這個模組來達成 )
+    private RecyclerView.ItemDecoration itemDecoration;//itemdecoration 用來裝飾介面
 
     private PreferencesUtility mPreferences;
-    private boolean isGrid;
+
+
+    private boolean isGrid;// 是否重抓資料
     private boolean isDefault;
     private boolean showAuto;
+
     private PlaylistAdapter mAdapter;
 
     private List<Playlist> playlists = new ArrayList<>();
@@ -70,7 +73,7 @@ public class PlaylistFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPreferences = PreferencesUtility.getInstance(getActivity());
+        mPreferences = PreferencesUtility.getInstance(getActivity());//設定PreferencesUtility.java的sInstance(獲得目前的環境)
         isGrid = mPreferences.getPlaylistView() == Constants.PLAYLIST_VIEW_GRID;
         isDefault = mPreferences.getPlaylistView() == Constants.PLAYLIST_VIEW_DEFAULT;
         showAuto = mPreferences.showAutoPlaylist();
@@ -134,7 +137,7 @@ public class PlaylistFragment extends Fragment {
         pager.setVisibility(View.GONE);
         setLayoutManager();
         mAdapter = new PlaylistAdapter(getActivity(), playlists);
-
+        // [xml, xml, xml]
         recyclerView.setAdapter(mAdapter);
         //to add spacing between cards
         if (getActivity() != null) {

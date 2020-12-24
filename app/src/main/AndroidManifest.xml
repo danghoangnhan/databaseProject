@@ -17,7 +17,7 @@
     <application
         android:name=".TimberApp"
         android:allowBackup="false"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/login_image"
         android:networkSecurityConfig="@xml/network_security"
         android:label="Timber"
         android:theme="@style/AppTheme.FullScreen.Light"
@@ -35,7 +35,8 @@
 
         <activity
             android:name=".activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:label="Music Creator">
             <intent-filter>
 
 
