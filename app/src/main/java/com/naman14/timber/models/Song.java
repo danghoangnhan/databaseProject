@@ -16,28 +16,37 @@ package com.naman14.timber.models;
 
 public class Song {
 
-    public final long albumId;
-    public final String albumName;
+    public final long songId;
+    public final long listId;
+    public final String songName;
+    public final int tuneSet;
     public final int duration;
-    public final long id;
-    public final String title;
-    public final int trackNumber;
+    public final int playCount;
+    public final int playTime;
+    public final int createTime;
+    public final long path;
 
     public Song() {
-        this.id = -1;
-        this.albumId = -1;
-        this.title = "";
-        this.albumName = "";
+        this.songId = -1;
+        this.listId = -1;
+        this.songName = "";
+        this.tuneSet = -1;
         this.duration = -1;
-        this.trackNumber = -1;
+        this.playCount = -1;
+        this.playTime = -1;
+        this.createTime = -1;
+        this.path = -1;
     }
 
-    public Song(long _id, long _albumId, String _title, String _albumName, int _duration, int _trackNumber) {
-        this.id = _id;
-        this.albumId = _albumId;
-        this.title = _title;
-        this.albumName = _albumName;
+    public Song(long _songId, long _listId, String _songName, int _tuneSet, int _duration, int _playCount, int _playTime, int _createTime, long _path) {
+        this.songId = _songId;
+        this.listId = _listId;
+        this.songName = _songName;
+        this.tuneSet = _tuneSet;
         this.duration = _duration;
-        this.trackNumber = _trackNumber;
+        this.playCount = _playCount;
+        this.playTime = _playTime;
+        this.createTime= _createTime;
+        this.path = _path;
     }
 }

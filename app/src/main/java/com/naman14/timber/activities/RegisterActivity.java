@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.naman14.timber.R;
 import com.naman14.timber.Service.JsonApi;
-import com.naman14.timber.models.authentication;
 
 import retrofit2.Call;
 import retrofit2.Callback;

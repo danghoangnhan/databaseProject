@@ -68,15 +68,19 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaylistFragment extends Fragment {
 
-    private FragmentStatePagerAdapter adapter;
-    private MultiViewPager pager;
-    private RecyclerView recyclerView;
-    private GridLayoutManager layoutManager;
-    private RecyclerView.ItemDecoration itemDecoration;
-    private PreferencesUtility mPreferences;
-    private  int playlistcount;
-    ArrayList<Playlist> returnPlaylist;
+    private int playlistcount;
+    private FragmentStatePagerAdapter adapter;//宣告adapter
+    private MultiViewPager pager;//宣告pager
+    private RecyclerView recyclerView;//recycleview創建列表
+    private GridLayoutManager layoutManager;//九宮格式的呈現list(原本是使用gridview來呈現，但是近期recycle view 可以利用這個模組來達成 )
+    private RecyclerView.ItemDecoration itemDecoration;//itemdecoration 用來裝飾介面
 
+    private PreferencesUtility mPreferences;
+
+
+    private boolean isGrid;// 是否重抓資料
+    private boolean isDefault;
+    private boolean showAuto;
 
     private PlaylistAdapter mAdapter;
 

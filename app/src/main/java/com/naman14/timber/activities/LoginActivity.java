@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.naman14.timber.R;
 import com.naman14.timber.Service.JsonApi;
-import com.naman14.timber.models.authentication;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -60,13 +59,15 @@ public class LoginActivity extends AppCompatActivity {
                             .build();
 
                     JsonApi Jsonapi = retrofit.create(JsonApi.class);
-
+                    //@POST("login")
+                    //    Call<authentication> login(@Query("usenamre") String username, @Query("password") String password);
                     Call<authentication> placeHolderApis = Jsonapi.login(ename.getText().toString(), epassword.getText().toString());
 
                     placeHolderApis.enqueue(new Callback<authentication>() {
                         @Override
                         public void onResponse(@NonNull Call<authentication> call, @NonNull Response<authentication> response) {
-                            if (response.isSuccessful()) {
+                            if (response.isSuccessful()) {//issuccessful() = status(200)
+
                                 Toast toast=Toast.makeText(LoginActivity.this,"welcome "+ename.getText().toString(),Toast.LENGTH_SHORT);
                                 toast.show();
                                 userBio = response.body();

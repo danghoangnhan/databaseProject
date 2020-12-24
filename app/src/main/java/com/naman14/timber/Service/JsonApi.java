@@ -1,5 +1,4 @@
 package com.naman14.timber.Service;
-import com.naman14.timber.models.authentication;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.models.Song;
 
@@ -12,7 +11,7 @@ import retrofit2.http.Query;
 
 public interface JsonApi {
     @POST("login")
-    Call<authentication> login(@Query("username") String username, @Query("password") String password);
+    Call<authentication> login(@Query("usenamre") String username, @Query("password") String password);
     @POST("register")
     Call<authentication> register(@Query("username") String username, @Query("password") String password);
     @GET("getSongByPlayListId")

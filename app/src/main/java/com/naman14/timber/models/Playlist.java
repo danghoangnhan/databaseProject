@@ -30,12 +30,12 @@ public class Playlist {
     @Expose
     public final long userId;
 
-<<<<<<< Updated upstream
+
     public int songCount;
 
     public Playlist() {
-        this.listId = -1;
-        this.playlistName = "";
+        this. listId= -1;
+        this.platListName = "";
         this.userId = -1;
     }
 
@@ -51,25 +51,12 @@ public class Playlist {
         return userId;
     }
 
-    public Playlist(int _listId, String _playlistName , long _userId) {
-        this.listId = _listId;
-        this.playlistName = _playlistName;
-        this.userId = _userId;
-=======
-    public final long playlistId;
-    public final String userId;
-    public final String  playlistName;
 
-    public Playlist() {
-        this.playlistId = -1;
-        this.userId = "";
-        this.playlistName = "";
-    }
 
     public Playlist(long _id, String _name, String  playlistName) {
         this.playlistId = _id;
         this.userId = _name;
         this.playlistName = playlistName;
->>>>>>> Stashed changes
+
     }
 }

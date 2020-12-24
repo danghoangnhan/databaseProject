@@ -38,7 +38,7 @@ public class MultiViewPager extends ViewPager {
 
     public MultiViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context, attrs);
+        init(context, attrs);//初始化環境
         size = new Point();
         maxSize = new Point();
     }
