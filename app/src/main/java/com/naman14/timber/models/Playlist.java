@@ -35,7 +35,7 @@ public class Playlist {
 
     public Playlist() {
         this. listId= -1;
-        this.platListName = "";
+        this.playlistName = "";
         this.userId = -1;
     }
 
@@ -53,10 +53,10 @@ public class Playlist {
 
 
 
-    public Playlist(long _id, String _name, String  playlistName) {
-        this.playlistId = _id;
-        this.userId = _name;
+    public Playlist(int _id, String  playlistName,int userId) {
+        this.listId = _id;
         this.playlistName = playlistName;
+        this.userId=userId;
 
     }
 }
