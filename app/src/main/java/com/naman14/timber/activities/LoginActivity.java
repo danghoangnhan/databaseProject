@@ -60,10 +60,7 @@ public class LoginActivity extends AppCompatActivity {
                             .build();
 
                     JsonApi Jsonapi = retrofit.create(JsonApi.class);
-                    //@POST("login")
-                    //    Call<authentication> login(@Query("usenamre") String username, @Query("password") String password);
                     Call<authentication> placeHolderApis = Jsonapi.login(ename.getText().toString(), epassword.getText().toString());
-
                     placeHolderApis.enqueue(new Callback<authentication>() {
                         @Override
                         public void onResponse(@NonNull Call<authentication> call, @NonNull Response<authentication> response) {
@@ -79,7 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                         }
                         @Override
                         public void onFailure(@NonNull Call<authentication> call, @NonNull Throwable t) {
-                            Toast toast=Toast.makeText(LoginActivity.this,"login failed",Toast.LENGTH_SHORT);
+                            Toast toast=Toast.makeText(LoginActivity.this,t.getMessage(),Toast.LENGTH_SHORT);
                             toast.show();
                             t.printStackTrace();
                         }

@@ -78,13 +78,11 @@ public class PlaylistFragment extends Fragment {
     private PreferencesUtility mPreferences;
 
 
-    private boolean isGrid;// 是否重抓資料
-    private boolean isDefault;
-    private boolean showAuto;
 
     private PlaylistAdapter mAdapter;
 
-    private List<Playlist> playlists ;
+    private List<Playlist> playlists;
+    private  ArrayList<Playlist> returnPlaylist;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

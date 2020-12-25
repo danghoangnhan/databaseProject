@@ -18,6 +18,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
 
+import com.naman14.timber.models.Album;
 import com.naman14.timber.utils.PreferencesUtility;
 
 import java.util.ArrayList;

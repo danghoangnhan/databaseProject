@@ -46,7 +46,7 @@ public class SongLoader {
                 long artistId = cursor.getInt(6);
                 long albumId = cursor.getLong(7);
 
-                arrayList.add(new Song(id, albumId, title, album, duration, trackNumber));
+                arrayList.add(new Song(id, albumId, title, duration,""));
             }
             while (cursor.moveToNext());
         if (cursor != null)
@@ -63,10 +63,9 @@ public class SongLoader {
             String album = cursor.getString(3);
             int duration = cursor.getInt(4);
             int trackNumber = cursor.getInt(5);
-            long artistId = cursor.getInt(6);
             long albumId = cursor.getLong(7);
 
-            song = new Song(id, albumId, title, album, duration, trackNumber);
+            song = new Song(id, albumId, title, duration, "");
         }
 
         if (cursor != null)
@@ -159,9 +158,8 @@ public class SongLoader {
                 -1,
                 -1,
                 mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
-                mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ALBUM),
                 Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)),
-                0
+                ""
         );
     }
 

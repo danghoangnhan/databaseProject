@@ -27,6 +27,7 @@ import android.widget.TextView;
 
 import com.afollestad.appthemeengine.Config;
 import com.naman14.timber.R;
+import com.naman14.timber.models.Album;
 import com.naman14.timber.utils.Helpers;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.PreferencesUtility;

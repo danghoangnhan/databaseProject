@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.naman14.timber.MusicPlayer;
 import com.naman14.timber.R;
 import com.naman14.timber.dialogs.AddPlaylistDialog;
+import com.naman14.timber.models.Album;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.TimberUtils;
@@ -80,9 +81,9 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
         switch (getItemViewType(i)) {
             case 0:
                 Song song = (Song) searchResults.get(i);
-                itemHolder.title.setText(song.title);
-                itemHolder.songartist.setText(song.albumName);
-                ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(song.albumId).toString(), itemHolder.albumArt,
+                itemHolder.title.setText(song.songName);
+                itemHolder.songartist.setText(song.songName);
+                ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(song.listId).toString(), itemHolder.albumArt,
                         new DisplayImageOptions.Builder().cacheInMemory(true)
                                 .cacheOnDisk(true)
                                 .showImageOnFail(R.drawable.ic_empty_music2)
@@ -140,7 +141,7 @@ public class SearchAdapter extends BaseSongAdapter<SearchAdapter.ItemHolder> {
                                 MusicPlayer.playNext(mContext, song, -1, TimberUtils.IdType.NA);
                                 break;
                             case R.id.popup_song_goto_album:
-                                NavigationUtils.navigateToAlbum(mContext, ((Song) searchResults.get(position)).albumId, null);
+                                NavigationUtils.navigateToAlbum(mContext, ((Song) searchResults.get(position)).listId, null);
                                 break;
                             case R.id.popup_song_addto_queue:
                                 MusicPlayer.addToQueue(mContext, song, -1, TimberUtils.IdType.NA);

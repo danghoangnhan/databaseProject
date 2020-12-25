@@ -76,10 +76,10 @@ public class ArtistSongAdapter extends BaseSongAdapter<ArtistSongAdapter.ItemHol
             setUpAlbums(itemHolder.albumsRecyclerView);
         } else {
             Song localItem = arraylist.get(i);
-            itemHolder.title.setText(localItem.title);
-            itemHolder.album.setText(localItem.albumName);
+            itemHolder.title.setText(localItem.songName);
+            itemHolder.album.setText(localItem.songName);
 
-            ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(),
+            ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.listId).toString(),
                     itemHolder.albumArt, new DisplayImageOptions.Builder()
                             .cacheInMemory(true).showImageOnLoading(R.drawable.ic_empty_music2).resetViewBeforeLoading(true).build());
             setOnPopupMenuListener(itemHolder, i - 1);
@@ -132,7 +132,7 @@ public class ArtistSongAdapter extends BaseSongAdapter<ArtistSongAdapter.ItemHol
                                 break;
                             case R.id.popup_song_delete:
                                 long[] deleteIds = {arraylist.get(position + 1).id};
-                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position + 1).title, deleteIds, ArtistSongAdapter.this, position + 1);
+                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position + 1).songName, deleteIds, ArtistSongAdapter.this, position + 1);
                                 break;
                         }
                         return false;

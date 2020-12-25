@@ -5,14 +5,12 @@ import android.util.Log;
 
 import com.google.android.gms.cast.MediaInfo;
 import com.google.android.gms.cast.MediaMetadata;
-import com.google.android.gms.cast.TextTrackStyle;
 import com.google.android.gms.cast.framework.CastSession;
 import com.google.android.gms.cast.framework.media.RemoteMediaClient;
 import com.google.android.gms.common.images.WebImage;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.TimberUtils;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -34,13 +32,13 @@ public class TimberCastHelper  {
         }
 
         String songUrl = baseUrl.toString() + "/song?id=" + song.id;
-        String albumArtUrl = baseUrl.toString() + "/albumart?id=" + song.albumId;
+        String albumArtUrl = baseUrl.toString() + "/albumart?id=" + song.listId;
 
         MediaMetadata musicMetadata = new MediaMetadata(MediaMetadata.MEDIA_TYPE_MUSIC_TRACK);
 
-        musicMetadata.putString(MediaMetadata.KEY_TITLE, song.title);
-        musicMetadata.putString(MediaMetadata.KEY_ALBUM_TITLE, song.albumName);
-        musicMetadata.putInt(MediaMetadata.KEY_TRACK_NUMBER, song.trackNumber);
+        musicMetadata.putString(MediaMetadata.KEY_TITLE, song.songName);
+        musicMetadata.putString(MediaMetadata.KEY_ALBUM_TITLE, song.songName);
+        musicMetadata.putInt(MediaMetadata.KEY_TRACK_NUMBER, song.duration);
         musicMetadata.addImage(new WebImage(Uri.parse(albumArtUrl)));
 
         try {

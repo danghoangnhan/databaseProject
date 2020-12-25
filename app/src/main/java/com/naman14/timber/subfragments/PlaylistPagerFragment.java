@@ -166,7 +166,7 @@ public class PlaylistPagerFragment extends Fragment {
                                 totalRuntime += song.duration / 1000; //for some reason default playlists have songs with durations 1000x larger than they should be
                             }
                             if (songCountInt != 0) {
-                                firstAlbumID = lastAddedSongs.get(0).albumId;
+                                firstAlbumID = lastAddedSongs.get(0).listId;
                                 return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                             } else return "nosongs";
                         case 1:
@@ -178,7 +178,7 @@ public class PlaylistPagerFragment extends Fragment {
                             }
 
                             if (songCountInt != 0) {
-                                firstAlbumID = recentsongs.get(0).albumId;
+                                firstAlbumID = recentsongs.get(0).listId;
                                 return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                             } else return "nosongs";
                         case 2:
@@ -189,7 +189,7 @@ public class PlaylistPagerFragment extends Fragment {
                                     totalRuntime += song.duration / 1000;
                             }
                             if (songCountInt != 0) {
-                                firstAlbumID = topsongs.get(0).albumId;
+                                firstAlbumID = topsongs.get(0).listId;
                                 return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                             } else return "nosongs";
                         default:
@@ -199,7 +199,7 @@ public class PlaylistPagerFragment extends Fragment {
                                 totalRuntime += song.duration;
                             }
                             if (songCountInt != 0) {
-                                firstAlbumID = playlistsongs.get(0).albumId;
+                                firstAlbumID = playlistsongs.get(0).listId;
                                 return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                             } else return "nosongs";
 
@@ -211,7 +211,7 @@ public class PlaylistPagerFragment extends Fragment {
                         totalRuntime += song.duration;
                     }
                     if (songCountInt != 0) {
-                        firstAlbumID = playlistsongs.get(0).albumId;
+                        firstAlbumID = playlistsongs.get(0).listId;
                         return TimberUtils.getAlbumArtUri(firstAlbumID).toString();
                     } else return "nosongs";
                 }

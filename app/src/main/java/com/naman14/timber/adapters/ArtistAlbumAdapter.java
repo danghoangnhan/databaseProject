@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.naman14.timber.R;
+import com.naman14.timber.models.Album;
 import com.naman14.timber.utils.ImageUtils;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.TimberUtils;

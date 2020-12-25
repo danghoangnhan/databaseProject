@@ -41,7 +41,7 @@ public class ArtistSongLoader {
                 long albumId = cursor.getInt(6);
                 long artistId = artistID;
 
-                songsList.add(new Song(id, albumId, title, album, duration, trackNumber));
+                songsList.add(new Song(id,id, title, duration,""));
             }
             while (cursor.moveToNext());
         if (cursor != null)

@@ -67,7 +67,7 @@ public class PlayingQueueAdapter extends RecyclerView.Adapter<PlayingQueueAdapte
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
         Song localItem = arraylist.get(i);
 
-        itemHolder.title.setText(localItem.title);
+        itemHolder.title.setText(localItem.songName);
 
         if (MusicPlayer.getCurrentAudioId() == localItem.id) {
             itemHolder.title.setTextColor(Config.accentColor(mContext, ateKey));
@@ -81,7 +81,7 @@ public class PlayingQueueAdapter extends RecyclerView.Adapter<PlayingQueueAdapte
             itemHolder.title.setTextColor(Config.textColorPrimary(mContext, ateKey));
             itemHolder.visualizer.setVisibility(View.GONE);
         }
-        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(),
+        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.listId).toString(),
                 itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
                         .showImageOnLoading(R.drawable.ic_empty_music2).resetViewBeforeLoading(true).build());
         setOnPopupMenuListener(itemHolder, i);

@@ -15,9 +15,7 @@
 package com.naman14.timber.dataloaders;
 
 import android.content.Context;
-
 import com.naman14.timber.models.Song;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,11 +45,8 @@ public class QueueLoader {
 
                 final int duration = mCursor.getInt(5);
 
-                final long artistid = mCursor.getInt(7);
 
-                final int tracknumber = mCursor.getInt(6);
-
-                final Song song = new Song(id, albumId, songName, album, duration, tracknumber);
+                final Song song = new Song(id,albumId, songName, duration,"");
 
                 mSongList.add(song);
             } while (mCursor.moveToNext());

@@ -19,6 +19,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
@@ -26,12 +27,15 @@ import android.renderscript.ScriptIntrinsicBlur;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.RequiresApi;
+
 import com.naman14.timber.R;
 import com.naman14.timber.dataloaders.AlbumLoader;
 import com.naman14.timber.lastfmapi.LastFmClient;
 import com.naman14.timber.lastfmapi.callbacks.AlbumInfoListener;
 import com.naman14.timber.lastfmapi.models.AlbumQuery;
 import com.naman14.timber.lastfmapi.models.LastfmAlbum;
+import com.naman14.timber.models.Album;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -118,6 +122,7 @@ public class ImageUtils {
                               });
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public static Drawable createBlurredImageFromBitmap(Bitmap bitmap, Context context, int inSampleSize) {
 
         RenderScript rs = RenderScript.create(context);

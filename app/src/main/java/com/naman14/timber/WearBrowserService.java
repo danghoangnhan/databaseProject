@@ -33,6 +33,7 @@ import com.naman14.timber.dataloaders.ArtistSongLoader;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dataloaders.PlaylistSongLoader;
 import com.naman14.timber.dataloaders.SongLoader;
+import com.naman14.timber.models.Album;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.TimberUtils;
@@ -243,13 +244,13 @@ public class WearBrowserService extends MediaBrowserService {
                         case TYPE_SONG:
                             List<Song> songList = SongLoader.getAllSongs(mContext);
                             for (Song song : songList) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId),song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.songName, TimberUtils.getAlbumArtUri(song.listId),song.songName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
                         case TYPE_ALBUM_SONGS:
                             List<Song> albumSongList = AlbumSongLoader.getSongsForAlbum(mContext, Long.parseLong(parentId.substring(1)));
                             for (Song song : albumSongList) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId),song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.songName, TimberUtils.getAlbumArtUri(song.listId),song.songName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
                         case TYPE_ARTIST_SONG_ALBUMS:
@@ -265,7 +266,7 @@ public class WearBrowserService extends MediaBrowserService {
                         case TYPE_ARTIST_ALL_SONGS:
                             List<Song> artistSongs = ArtistSongLoader.getSongsForArtist(mContext, Long.parseLong(parentId.substring(1)));
                             for (Song song : artistSongs) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId), song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.songName, TimberUtils.getAlbumArtUri(song.listId), song.songName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
                         case TYPE_PLAYLIST:
@@ -280,7 +281,7 @@ public class WearBrowserService extends MediaBrowserService {
                         case TYPE_PLAYLIST_ALL_SONGS:
                             List<Song> playlistSongs = PlaylistSongLoader.getSongsInPlaylist(mContext, Long.parseLong(parentId.substring(1)));
                             for (Song song : playlistSongs) {
-                                fillMediaItems(mediaItems, String.valueOf(song.id), song.title, TimberUtils.getAlbumArtUri(song.albumId), song.albumName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
+                                fillMediaItems(mediaItems, String.valueOf(song.id), song.songName, TimberUtils.getAlbumArtUri(song.listId), song.songName, MediaBrowser.MediaItem.FLAG_PLAYABLE);
                             }
                             break;
 

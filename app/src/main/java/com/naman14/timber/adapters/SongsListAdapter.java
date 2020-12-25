@@ -81,9 +81,9 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
     @Override
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
         Song localItem = arraylist.get(i);
-        itemHolder.title.setText(localItem.title);
+        itemHolder.title.setText(localItem.songName);
 
-        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(),
+        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.listId).toString(),
                 itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
                         .showImageOnLoading(R.drawable.ic_empty_music2)
                         .resetViewBeforeLoading(true).build());
@@ -167,7 +167,7 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
                                 break;
                             case R.id.popup_song_delete:
                                 long[] deleteIds = {arraylist.get(position).id};
-                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, SongsListAdapter.this, position);
+                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).songName, deleteIds, SongsListAdapter.this, position);
                                 break;
                         }
                         return false;
@@ -194,7 +194,7 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
     public String getTextToShowInBubble(final int pos) {
         if (arraylist == null || arraylist.size() == 0)
             return "";
-        Character ch = arraylist.get(pos).title.charAt(0);
+        Character ch = arraylist.get(pos).songName.charAt(0);
         if (Character.isDigit(ch)) {
             return "#";
         } else

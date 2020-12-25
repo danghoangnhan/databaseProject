@@ -45,7 +45,7 @@ public class AlbumSongLoader {
                     trackNumber -= 1000; //When error occurs the track numbers have an extra 1000 or 2000 added, so decrease till normal.
                 }
                 long albumId = albumID;
-                arrayList.add(new Song(id, albumId, title, album, duration, trackNumber));
+                arrayList.add(new Song(id,albumID, title, duration,""));
             }
             while (cursor.moveToNext());
         if (cursor != null)

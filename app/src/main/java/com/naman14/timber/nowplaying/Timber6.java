@@ -117,8 +117,8 @@ public class Timber6 extends BaseNowplayingFragment {
         if (getActivity() != null) {
             long nextId = MusicPlayer.getNextAudioId();
             Song next = SongLoader.getSongForID(getActivity(), nextId);
-            nextSong.setText(next.title);
-            nextArt.setImageURI(TimberUtils.getAlbumArtUri(next.albumId));
+            nextSong.setText(next.songName);
+            nextArt.setImageURI(TimberUtils.getAlbumArtUri(next.listId));
         }
     }
 }

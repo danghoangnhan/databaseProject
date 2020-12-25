@@ -83,7 +83,7 @@ public class FolderAdapter extends BaseSongAdapter<FolderAdapter.ItemHolder> imp
         if (localItem.isDirectory()) {
             itemHolder.albumArt.setImageDrawable("..".equals(localItem.getName()) ? mIcons[1] : mIcons[0]);
         } else {
-            ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(song.albumId).toString(),
+            ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(song.listId).toString(),
                     itemHolder.albumArt,
                     new DisplayImageOptions.Builder().
                             cacheInMemory(true).showImageOnFail(mIcons[2])

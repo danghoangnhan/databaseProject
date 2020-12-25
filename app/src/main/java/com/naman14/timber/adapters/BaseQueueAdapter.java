@@ -64,9 +64,9 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
     public void onBindViewHolder(ItemHolder itemHolder, int i) {
         Song localItem = arraylist.get(i);
 
-        itemHolder.title.setText(localItem.title);
+        itemHolder.title.setText(localItem.songName);
 
-        if (MusicPlayer.getCurrentAudioId() == localItem.id) {
+        if (MusicPlayer.getCurrentAudioId() == localItem.listId) {
             itemHolder.title.setTextColor(Config.accentColor(mContext, ateKey));
             if (MusicPlayer.isPlaying()) {
                 itemHolder.visualizer.setColor(Config.accentColor(mContext, ateKey));
@@ -78,7 +78,7 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
             itemHolder.title.setTextColor(Config.textColorPrimary(mContext, ateKey));
             itemHolder.visualizer.setVisibility(View.GONE);
         }
-        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.albumId).toString(),
+        ImageLoader.getInstance().displayImage(TimberUtils.getAlbumArtUri(localItem.listId).toString(),
                 itemHolder.albumArt, new DisplayImageOptions.Builder().cacheInMemory(true)
                         .showImageOnLoading(R.drawable.ic_empty_music2).resetViewBeforeLoading(true).build());
         setOnPopupMenuListener(itemHolder, i);
@@ -121,7 +121,7 @@ public class BaseQueueAdapter extends RecyclerView.Adapter<BaseQueueAdapter.Item
                                 break;
                             case R.id.popup_song_delete:
                                 long[] deleteIds = {arraylist.get(position).id};
-                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, BaseQueueAdapter.this, position);
+                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).songName, deleteIds, BaseQueueAdapter.this, position);
                                 break;
                         }
                         return false;

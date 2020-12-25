@@ -40,10 +40,9 @@ public class LastAddedLoader {
                 String title = mCursor.getString(1);
                 String album = mCursor.getString(3);
                 int duration = mCursor.getInt(4);
-                int trackNumber = mCursor.getInt(5);
                 long albumId = mCursor.getLong(7);
 
-                final Song song = new Song(id, albumId,title, album, duration, trackNumber);
+                final Song song = new Song(id,albumId, title, duration,"");
 
                 mSongList.add(song);
             } while (mCursor.moveToNext());

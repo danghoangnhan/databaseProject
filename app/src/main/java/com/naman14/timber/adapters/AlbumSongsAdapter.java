@@ -64,12 +64,9 @@ public class AlbumSongsAdapter extends BaseSongAdapter<AlbumSongsAdapter.ItemHol
 
         Song localItem = arraylist.get(i);
 
-        itemHolder.title.setText(localItem.title);
+        itemHolder.title.setText(localItem.songName);
         itemHolder.duration.setText(TimberUtils.makeShortTimeString(mContext, (localItem.duration) / 1000));
-        int tracknumber = localItem.trackNumber;
-        if (tracknumber == 0) {
-            itemHolder.trackNumber.setText("-");
-        } else itemHolder.trackNumber.setText(String.valueOf(tracknumber));
+        itemHolder.trackNumber.setText(String.valueOf(localItem.id));
 
         setOnPopupMenuListener(itemHolder, i);
 
@@ -108,7 +105,7 @@ public class AlbumSongsAdapter extends BaseSongAdapter<AlbumSongsAdapter.ItemHol
                                 break;
                             case R.id.popup_song_delete:
                                 long[] deleteIds = {arraylist.get(position).id};
-                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).title, deleteIds, AlbumSongsAdapter.this, position);
+                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).songName, deleteIds, AlbumSongsAdapter.this, position);
                                 break;
                         }
                         return false;
