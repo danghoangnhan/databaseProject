@@ -134,7 +134,7 @@
 
         <Preference
             android:key="support_development"
-            android:summary="Support the development of Timber and unlock all now playing styles"
+            android:summary=""
             android:title="Support development" />
 
         <Preference
