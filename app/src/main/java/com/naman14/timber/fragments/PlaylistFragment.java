@@ -38,6 +38,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.appthemeengine.ATE;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.naman14.timber.R;
 import com.naman14.timber.Service.ApiService;
 import com.naman14.timber.Service.JsonApi;
@@ -54,8 +56,13 @@ import com.naman14.timber.widgets.DividerItemDecoration;
 import com.naman14.timber.widgets.MultiViewPager;
 
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -70,13 +77,8 @@ public class PlaylistFragment extends Fragment {
     private RecyclerView recyclerView;//recycleview創建列表
     private GridLayoutManager layoutManager;//九宮格式的呈現list(原本是使用gridview來呈現，但是近期recycle view 可以利用這個模組來達成 )
     private RecyclerView.ItemDecoration itemDecoration;//itemdecoration 用來裝飾介面
-
     private PreferencesUtility mPreferences;
-
-
-
     private PlaylistAdapter mAdapter;
-
     private List<Playlist> playlists;
     private  ArrayList<Playlist> returnPlaylist;
 
@@ -114,8 +116,12 @@ public class PlaylistFragment extends Fragment {
                 .build();
 
         JsonApi Jsonapi = retrofit.create(JsonApi.class);
-
-        Call<List<Playlist>> placeHolderApis = Jsonapi.getPlaylist(LoginActivity.getUser().getId());
+            Map<String, String> build = new HashMap<>();
+            build.put("userId",String.valueOf(LoginActivity.getUser().getId()));
+            JSONObject RegisterJson = new JSONObject(build);
+            JsonParser jsonParser = new JsonParser();
+            JsonObject ToJson = (JsonObject) jsonParser.parse(RegisterJson.toString());
+        Call<List<Playlist>> placeHolderApis = Jsonapi.getPlaylist(ToJson);
 
         placeHolderApis.enqueue(new Callback<List<Playlist>>() {
             @Override
@@ -162,7 +168,7 @@ public class PlaylistFragment extends Fragment {
         recyclerView.setVisibility(View.VISIBLE);
         pager.setVisibility(View.GONE);
         setLayoutManager();
-        mAdapter = new PlaylistAdapter(getContext(),returnPlaylist);
+        mAdapter = new PlaylistAdapter(returnPlaylist);
         recyclerView.setAdapter(mAdapter);
         if (getActivity() != null) {
             setItemDecoration();
@@ -182,7 +188,7 @@ public class PlaylistFragment extends Fragment {
 
     private void updateLayoutManager(int column) {
         recyclerView.removeItemDecoration(itemDecoration);
-        recyclerView.setAdapter(new PlaylistAdapter(getActivity(), returnPlaylist));
+        recyclerView.setAdapter(new PlaylistAdapter( returnPlaylist));
         layoutManager.setSpanCount(column);
         layoutManager.requestLayout();
         setItemDecoration();
@@ -271,7 +277,6 @@ public class PlaylistFragment extends Fragment {
         getPlayLists();
         playlists = returnPlaylist;
         playlistcount = playlists.size();
-        mAdapter.updateDataSet(playlists);
     }
 
     public void reloadPlaylists() {

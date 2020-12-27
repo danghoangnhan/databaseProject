@@ -33,12 +33,6 @@ public class Playlist {
 
     public int songCount;
 
-//    public Playlist() {
-//        this. listId= -1;
-//        this.playlistName = "";
-//        this.userId = -1;
-//    }
-
     public Playlist(int _id, String  playlistName,int userId) {
         this.listId = _id;
         this.playlistName = playlistName;

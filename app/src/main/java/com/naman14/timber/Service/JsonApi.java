@@ -22,4 +22,6 @@ public interface JsonApi {
     Call<Song> getSongByPlayListId(@Query("Id") int id);
     @POST("getPlaylist")
     Call<List<Playlist>> getPlaylist(@Body JsonObject getPlaylist_body);
+
+    Call<List<Playlist>> getPlaylist();
 }

@@ -52,9 +52,9 @@ public class LoginActivity extends AppCompatActivity {
                 // Intent: jump screen type // (LoginActivity.this, (jump to) RegisterActivity.class)
                 // direct to tmp activity
                 System.out.println("111");
-                Intent toRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                //Intent toRegister = new Intent(LoginActivity.this, RegisterActivity.class);
                 System.out.println("222");
-                //Intent toRegister = new Intent(LoginActivity.this, TmpActivity.class);
+                Intent toRegister = new Intent(LoginActivity.this, TmpActivity.class);
                 startActivity(toRegister);
                 finish();
             }

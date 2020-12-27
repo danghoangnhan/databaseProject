@@ -35,8 +35,7 @@ import android.widget.ArrayAdapter;
 public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHolder> {
     Context context;
     ArrayList<Playlist> playlists;
-    public  PlaylistAdapter(@NonNull Context context, ArrayList<Playlist>object){
-        this.context = context;
+    public  PlaylistAdapter( ArrayList<Playlist>object){
         this.playlists=object;
     }
 
@@ -44,11 +43,10 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
     int[] foregroundColors = {R.color.pink_transparent, R.color.green_transparent, R.color.blue_transparent, R.color.red_transparent, R.color.purple_transparent};
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_playlist,viewGroup,false);
-             return new ViewHolder(v);
+    public PlaylistAdapter.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View playlistView = LayoutInflater.from( viewGroup.getContext()).inflate(R.layout.item_playlist, viewGroup, false);
+        return  new ViewHolder(playlistView);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Playlist playlist = playlists.get(position);
@@ -56,29 +54,18 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
         holder.id.setText(String.valueOf(playlist.getListId()));
     }
 
-
-
-
-    public int getItemCount() {
-        return (null != playlists ? playlists.size() : 0);
-    }
-
-    public void updateDataSet(List<Playlist> arraylist) {
-        this.playlists.clear();
-        this.playlists.addAll(arraylist);
-        notifyDataSetChanged();
-    }
-
+    public int getItemCount() { return playlists.size(); }
 
      class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
         protected TextView id;
         protected TextView title;
          protected ImageView albumArt;
 
         public ViewHolder(@NonNull View view) {
             super(view);
-            this.title = (TextView) view.findViewById(R.id.album_title);
-            this.albumArt = (ImageView) view.findViewById(R.id.album_art);
+            this.title = view.findViewById(R.id.playlistTitle);
+            this.albumArt = view.findViewById(R.id.album_art);
             this.id = view.findViewById(R.id.playlistID);
             view.setOnClickListener(this);
         }
@@ -90,7 +77,6 @@ public class PlaylistAdapter extends RecyclerView.Adapter<PlaylistAdapter.ViewHo
                     null);
 
         }
-
     }
     private String getPlaylistType(int position) {
          return Constants.NAVIGATE_PLAYLIST_USERCREATED;
