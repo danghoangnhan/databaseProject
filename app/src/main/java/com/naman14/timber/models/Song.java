@@ -58,28 +58,28 @@ public class Song {
         this.path = "";
     }
 
-    public long getsongId() {
+    public long getSongId() {
         return songId;
     }
-    public long getlistId() {
+    public long getListId() {
         return listId;
     }
-    public String getsongName() {
+    public String getSongName() {
         return songName;
     }
-    public int getduration() {
+    public int getDuration() {
         return duration;
     }
-    public int getplayCount() {
+    public int getPlayCount() {
         return playCount;
     }
-    public Date getplayTime() {
+    public Date getPlayTime() {
         return playTime;
     }
-    public Date getcreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
-    public String getpath() {
+    public String getPath() {
         return path;
     }
 
