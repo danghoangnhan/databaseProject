@@ -14,12 +14,27 @@
 
 package com.naman14.timber.models;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class Album {
+    @SerializedName(" artistId")
+    @Expose
     public final long artistId;
+    @SerializedName(" artistName")
+    @Expose
     public final String artistName;
+    @SerializedName(" id")
+    @Expose
     public final long id;
+    @SerializedName(" songCount")
+    @Expose
     public final int songCount;
+    @SerializedName(" title")
+    @Expose
     public final String title;
+    @SerializedName(" year")
+    @Expose
     public final int year;
 
     public Album() {
