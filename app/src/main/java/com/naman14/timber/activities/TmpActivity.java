@@ -65,6 +65,18 @@ public class TmpActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+<<<<<<< Updated upstream
+=======
+                if(response.isSuccessful())System.out.println("PlayList Post OK!");
+                // response.body() is a list
+                // put in arraylist = [[], [], []]
+                // put in adapter
+                for(Playlist pl : response.body())
+                    OUTPUT.add(pl);
+                for(Playlist playlist : OUTPUT)
+                    System.out.println("NOW List have : " + playlist.getPlaylistName());
+            }
+>>>>>>> Stashed changes
 
                 List<Playlist> jsonResponse = response.body();
                 OUTPUT = new ArrayList<>(jsonResponse.size());
