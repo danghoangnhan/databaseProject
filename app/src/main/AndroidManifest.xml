@@ -22,7 +22,8 @@
         android:theme="@style/AppTheme.FullScreen.Light"
         tools:replace="android:allowBackup, android:label"
         tools:targetApi="n">
-        <activity android:name=".activities.MostPlayActivity"></activity>
+        <activity android:name=".activities.TmpActivity"></activity>
+        <activity android:name=".activities.MostPlayActivity" />
         <activity android:name=".activities.LastAddActivity" />
         <activity android:name=".activities.HistoryActivity" />
         <activity
@@ -34,6 +35,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.RegisterActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="Music Creator"

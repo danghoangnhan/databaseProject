@@ -20,23 +20,30 @@ import com.google.gson.annotations.SerializedName;
 public class Playlist {
     @SerializedName("listId")
     @Expose
-    public final int listId;
+    public final Integer listId;
 
-    @SerializedName("playlistName")
+    @SerializedName("playListName")
     @Expose
     public final String playlistName;
 
-    @SerializedName(" userId")
+    @SerializedName("userId")
     @Expose
-    public final long userId;
+    public final Integer userId;
 
 
     public int songCount;
 
-    public Playlist() {
-        this. listId= -1;
-        this.playlistName = "";
-        this.userId = -1;
+//    public Playlist() {
+//        this. listId= -1;
+//        this.playlistName = "";
+//        this.userId = -1;
+//    }
+
+    public Playlist(int _id, String  playlistName,int userId) {
+        this.listId = _id;
+        this.playlistName = playlistName;
+        this.userId=userId;
+
     }
 
     public int getListId() {
@@ -49,14 +56,5 @@ public class Playlist {
 
     public long getUserId() {
         return userId;
-    }
-
-
-
-    public Playlist(int _id, String  playlistName,int userId) {
-        this.listId = _id;
-        this.playlistName = playlistName;
-        this.userId=userId;
-
     }
 }

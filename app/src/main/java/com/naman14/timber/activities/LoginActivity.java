@@ -1,7 +1,4 @@
 package com.naman14.timber.activities;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,6 +6,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.naman14.timber.R;
 import com.naman14.timber.Service.JsonApi;
@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private String TAG = LoginActivity.class.getSimpleName();
     private EditText ename;
     private EditText epassword;
-    private Button elogin;
+    private Button elogin, eregister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,14 +36,31 @@ public class LoginActivity extends AppCompatActivity {
         addEvent();
     }
 
-
     private void addControl() {
         ename = findViewById(R.id.editTextTextPersonName);
         epassword = findViewById(R.id.editTextTextPersonName2);
         elogin = findViewById(R.id.button);
+        eregister = findViewById(R.id.button3);
 
     }
     private void addEvent() {
+
+        eregister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // direct to register activity
+                // Intent: jump screen type // (LoginActivity.this, (jump to) RegisterActivity.class)
+                // direct to tmp activity
+                System.out.println("111");
+                Intent toRegister = new Intent(LoginActivity.this, RegisterActivity.class);
+                System.out.println("222");
+                //Intent toRegister = new Intent(LoginActivity.this, TmpActivity.class);
+                startActivity(toRegister);
+                finish();
+            }
+        });
+
+
         elogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,9 +107,8 @@ public class LoginActivity extends AppCompatActivity {
                 setResult(Activity.RESULT_OK);
             }
         });}
-        public static authentication getUser(){
+    public static authentication getUser(){
         return  userBio;
-        }
+    }
 
 }
-
