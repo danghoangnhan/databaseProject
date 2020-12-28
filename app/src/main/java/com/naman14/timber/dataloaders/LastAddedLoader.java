@@ -23,6 +23,7 @@ import com.naman14.timber.models.Song;
 import com.naman14.timber.utils.PreferencesUtility;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LastAddedLoader {
@@ -42,7 +43,7 @@ public class LastAddedLoader {
                 int duration = mCursor.getInt(4);
                 long albumId = mCursor.getLong(7);
 
-                final Song song = new Song(id,albumId, title, duration,"");
+                final Song song = new Song(id,albumId, title, duration,0,new Date(),new Date(),"");
 
                 mSongList.add(song);
             } while (mCursor.moveToNext());

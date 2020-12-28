@@ -185,15 +185,15 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         navigationMap.put(Constants.NAVIGATE_ARTIST, navigateArtist);
         navigationMap.put(Constants.NAVIGATE_LYRICS, navigateLyrics);
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        panelLayout = (SlidingUpPanelLayout) findViewById(R.id.sliding_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        panelLayout = findViewById(R.id.sliding_layout);
 
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         View header = navigationView.inflateHeaderView(R.layout.nav_header);
 
-        albumart = (ImageView) header.findViewById(R.id.album_art);
-        songtitle = (TextView) header.findViewById(R.id.song_title);
-        songartist = (TextView) header.findViewById(R.id.song_artist);
+        albumart = header.findViewById(R.id.album_art);
+        songtitle = header.findViewById(R.id.song_title);
+        songartist = header.findViewById(R.id.song_artist);
 
         setPanelSlideListeners(panelLayout);
 
@@ -208,7 +208,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         if (TimberUtils.isMarshmallow()) {
             checkPermissionAndThenLoad();
-            //checkWritePermissions();
         } else {
             loadEverything();
         }
@@ -459,7 +458,6 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         return (currentFragment instanceof MainFragment || currentFragment instanceof QueueFragment
                 || currentFragment instanceof PlaylistFragment || currentFragment instanceof FoldersFragment);
     }
-
     private void addBackstackListener() {
         getSupportFragmentManager().addOnBackStackChangedListener(new FragmentManager.OnBackStackChangedListener() {
             @Override

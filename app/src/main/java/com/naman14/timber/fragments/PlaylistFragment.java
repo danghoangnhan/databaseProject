@@ -19,32 +19,29 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.afollestad.appthemeengine.ATE;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.naman14.timber.R;
-import com.naman14.timber.Service.ApiService;
 import com.naman14.timber.Service.JsonApi;
 import com.naman14.timber.activities.LoginActivity;
-import com.naman14.timber.activities.MainActivity;
 import com.naman14.timber.adapters.PlaylistAdapter;
 import com.naman14.timber.dataloaders.PlaylistLoader;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
@@ -54,7 +51,6 @@ import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.PreferencesUtility;
 import com.naman14.timber.widgets.DividerItemDecoration;
 import com.naman14.timber.widgets.MultiViewPager;
-
 
 import org.json.JSONObject;
 
@@ -70,143 +66,73 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaylistFragment extends Fragment {
-
+    PlaylistAdapter playlistAdapters;
+    ArrayList<Playlist> OUTPUT;
+    private RecyclerView recyclerView;
     private int playlistcount;
     private FragmentStatePagerAdapter adapter;//宣告adapter
     private MultiViewPager pager;//宣告pager
-    private RecyclerView recyclerView;//recycleview創建列表
     private GridLayoutManager layoutManager;//九宮格式的呈現list(原本是使用gridview來呈現，但是近期recycle view 可以利用這個模組來達成 )
     private RecyclerView.ItemDecoration itemDecoration;//itemdecoration 用來裝飾介面
     private PreferencesUtility mPreferences;
-    private PlaylistAdapter mAdapter;
-    private List<Playlist> playlists;
-    private  ArrayList<Playlist> returnPlaylist;
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        getPlayLists();
-
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_playlist, container, false);
-        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-        pager = rootView.findViewById(R.id.playlistpager);
-        recyclerView = rootView.findViewById(R.id.recyclerview);
+        View rootView = inflater.inflate( R.layout.fragment_playlist, container, false);
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
+        pager = (MultiViewPager) rootView.findViewById(R.id.playlistpager);
+        recyclerView  =rootView.findViewById(R.id.recyclerview);
+
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setTitle(R.string.playlists);
-        getPlayLists();
-        initRecyclerView();
+        initViews();
+        loadJSON();
+        playlistcount = 10;
         return rootView;
     }
 
+    private void initViews(){
+        recyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView.setLayoutManager(layoutManager);
+    }
 
-
-
-    private void getPlayLists(){
-        try{
+    private void loadJSON(){
+        Map<String, String> build = new HashMap<>();
+        build.put("userid", String.valueOf(LoginActivity.getUser().getId()));
+        JSONObject RegisterJson = new JSONObject(build);
+        JsonParser jsonParser = new JsonParser();
+        JsonObject ToJson = (JsonObject) jsonParser.parse(RegisterJson.toString());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://140.136.151.130/")
+                .baseUrl("http://140.136.151.130")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        JsonApi request = retrofit.create(JsonApi.class);
+        Call<List<Playlist>> call = request.getPlaylist(ToJson);
 
-        JsonApi Jsonapi = retrofit.create(JsonApi.class);
-            Map<String, String> build = new HashMap<>();
-            build.put("userId",String.valueOf(LoginActivity.getUser().getId()));
-            JSONObject RegisterJson = new JSONObject(build);
-            JsonParser jsonParser = new JsonParser();
-            JsonObject ToJson = (JsonObject) jsonParser.parse(RegisterJson.toString());
-        Call<List<Playlist>> placeHolderApis = Jsonapi.getPlaylist(ToJson);
-
-        placeHolderApis.enqueue(new Callback<List<Playlist>>() {
+        call.enqueue(new Callback<List<Playlist>>() {
             @Override
-            public void onResponse(@NonNull Call<List<Playlist>> call, @NonNull Response<List<Playlist>> response) {
-                if (response.isSuccessful()) {
-                    returnPlaylist = new ArrayList<>(response.body().size());
-                    returnPlaylist.addAll(response.body());
-                }
+            public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
+                List<Playlist> jsonResponse = response.body();
+                OUTPUT = new ArrayList<>(jsonResponse.size());
+                OUTPUT.addAll(jsonResponse);
+                playlistAdapters = new PlaylistAdapter(OUTPUT);
+                recyclerView.setAdapter(playlistAdapters);
             }
             @Override
-            public void onFailure(@NonNull Call<List<Playlist>> call, @NonNull Throwable t) {
-                Toast toast=Toast.makeText(getActivity(),"login failed",Toast.LENGTH_SHORT);
-                toast.show();
-                t.printStackTrace();
+            public void onFailure(Call<List<Playlist>> call, Throwable t) {
+                Log.d("Error",t.getMessage());
             }
         });
-
     }
-                catch (Exception e){
-                    Toast toast=Toast.makeText(getActivity(),e.toString(),Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-    }
-
-
-    private void initPager() {
-        pager.setVisibility(View.VISIBLE);
-        recyclerView.setVisibility(View.GONE);
-        recyclerView.setAdapter(mAdapter);
-        adapter = new FragmentStatePagerAdapter(getChildFragmentManager()) {
-
-            @Override
-            public int getCount() { return returnPlaylist.size(); }
-
-            @Override
-            public Fragment getItem(int position) { return PlaylistPagerFragment.newInstance(position); }
-
-        };
-        pager.setAdapter(adapter);
-        pager.setOffscreenPageLimit(3);
-    }
-
-    private void initRecyclerView() {
-        recyclerView.setVisibility(View.VISIBLE);
-        pager.setVisibility(View.GONE);
-        setLayoutManager();
-        mAdapter = new PlaylistAdapter(returnPlaylist);
-        recyclerView.setAdapter(mAdapter);
-        if (getActivity() != null) {
-            setItemDecoration();
-        }
-    }
-
-
-    private void setLayoutManager() {
-            layoutManager = new GridLayoutManager(getActivity(), 1);
-            recyclerView.setLayoutManager(layoutManager);
-    }
-
-    private void setItemDecoration() {
-            itemDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST);
-        recyclerView.addItemDecoration(itemDecoration);
-   }
-
-    private void updateLayoutManager(int column) {
-        recyclerView.removeItemDecoration(itemDecoration);
-        recyclerView.setAdapter(new PlaylistAdapter( returnPlaylist));
-        layoutManager.setSpanCount(column);
-        layoutManager.requestLayout();
-        setItemDecoration();
-    }
-
-
     public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
         private int space;
-
-        public SpacesItemDecoration(int space) {
-            this.space = space;
-        }
-
         @Override
         public void getItemOffsets(Rect outRect, View view,
                                    RecyclerView parent, RecyclerView.State state) {
-
-
             outRect.left = space;
             outRect.top = space;
             outRect.right = space;
@@ -214,83 +140,18 @@ public class PlaylistFragment extends Fragment {
 
         }
     }
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        if (PreferenceManager.getDefaultSharedPreferences(getActivity()).getBoolean("dark_theme", false)) {
-            ATE.apply(this, "dark_theme");
-        } else {
-            ATE.apply(this, "light_theme");
-        }
-    }
-
-    @Override
-    public void onActivityCreated(final Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-        inflater.inflate(R.menu.menu_playlist, menu);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-        menu.findItem(R.id.action_view_auto_playlists).setTitle("Show auto playlists");
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_new_playlist:
-                CreatePlaylistDialog.newInstance().show(getChildFragmentManager(), "CREATE_PLAYLIST");
-                return true;
-            case R.id.menu_show_as_list:
-                mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_LIST);
-                initRecyclerView();
-                updateLayoutManager(1);
-                return true;
-            case R.id.menu_show_as_grid:
-                mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_GRID);
-                initRecyclerView();
-                updateLayoutManager(2);
-                return true;
-            case R.id.menu_show_as_default:
-                mPreferences.setPlaylistView(Constants.PLAYLIST_VIEW_DEFAULT);
-                initPager();
-                return true;
-            case R.id.action_view_auto_playlists:
-                    mPreferences.setToggleShowAutoPlaylist(true);
-                reloadPlaylists();
-                getActivity().invalidateOptionsMenu();
-                break;
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
     public void updatePlaylists(final long id) {
-        getPlayLists();
-        playlists = returnPlaylist;
-        playlistcount = playlists.size();
+        loadJSON();
+        playlistcount = OUTPUT.size();
     }
-
-    public void reloadPlaylists() {
-        getPlayLists();
-        playlists = returnPlaylist;
-            initRecyclerView();
-    }
+    
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == Constants.ACTION_DELETE_PLAYLIST) {
             if (resultCode == Activity.RESULT_OK) {
-                reloadPlaylists();
+                loadJSON();
             }
 
         }

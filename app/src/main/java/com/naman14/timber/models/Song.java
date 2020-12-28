@@ -17,13 +17,15 @@ package com.naman14.timber.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import org.xml.sax.DTDHandler;
+
 import java.util.Date;
 import java.util.StringTokenizer;
 
 public class Song {
     @SerializedName("songId")
     @Expose
-    public final long songId;
+    public final long id;
     @SerializedName("songName")
     @Expose
     public final String songName;
@@ -48,7 +50,7 @@ public class Song {
 
 
     public Song() {
-        this.songId = -1;
+        this.id = -1;
         this.listId = -1;
         this.songName = "";
         this.duration = -1;
@@ -59,7 +61,7 @@ public class Song {
     }
 
     public long getSongId() {
-        return songId;
+        return id;
     }
     public long getListId() {
         return listId;
@@ -84,13 +86,25 @@ public class Song {
     }
 
     public Song(long _songId, long _listId, String _songName, int _duration, int _playCount, Date _playTime, Date _createTime, String _path) {
-        this.songId = _songId;
+        this.id = _songId;
         this.listId = _listId;
         this.songName = _songName;
         this.duration = _duration;
         this.playCount = _playCount;
         this.playTime = _playTime;
         this.createTime= _createTime;
+        this.path = _path;
+    }
+
+    //arrayList.add(new Song(id,albumID, title, duration,""));
+    public Song(long _songId, long _listId, String _songName, int _duration, String _path) {
+        this.id = _songId;
+        this.listId = _listId;
+        this.songName = _songName;
+        this.duration = _duration;
+        this.playCount = 0;
+        this.playTime = new Date();
+        this.createTime= new Date();
         this.path = _path;
     }
 }
