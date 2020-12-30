@@ -65,21 +65,13 @@ public class TmpActivity extends AppCompatActivity {
         call.enqueue(new Callback<List<Playlist>>() {
             @Override
             public void onResponse(Call<List<Playlist>> call, Response<List<Playlist>> response) {
-                if(response.isSuccessful())System.out.println("PlayList Post OK!");
-                // response.body() is a list
-                // put in arraylist = [[], [], []]
-                // put in adapter
-                for(Playlist pl : response.body())
-                    OUTPUT.add(pl);
-                for(Playlist playlist : OUTPUT)
-                    System.out.println("NOW List have : " + playlist.getPlaylistName());
-            }
-
-                List<Playlist> jsonResponse = response.body();
-                OUTPUT = new ArrayList<>(jsonResponse.size());
-                OUTPUT.addAll(jsonResponse);
-                PlaylistAdapter playlistAdapters = new PlaylistAdapter(OUTPUT);
-                recyclerView.setAdapter(playlistAdapters);
+                if(response.isSuccessful()) {
+                    List<Playlist> jsonResponse = response.body();
+                    OUTPUT = new ArrayList<>(jsonResponse.size());
+                    OUTPUT.addAll(jsonResponse);
+                    playlistAdapters = new PlaylistAdapter(OUTPUT);
+                    recyclerView.setAdapter(playlistAdapters);
+                }
             }
             @Override
             public void onFailure(Call<List<Playlist>> call, Throwable t) {
