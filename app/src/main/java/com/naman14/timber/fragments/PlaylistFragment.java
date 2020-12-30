@@ -79,8 +79,8 @@ public class PlaylistFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate( R.layout.fragment_playlist, container, false);
-        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar);
-        pager = (MultiViewPager) rootView.findViewById(R.id.playlistpager);
+        Toolbar toolbar = rootView.findViewById(R.id.toolbar);
+        pager = rootView.findViewById(R.id.playlistpager);
         recyclerView  =rootView.findViewById(R.id.recyclerview);
 
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
@@ -102,7 +102,7 @@ public class PlaylistFragment extends Fragment {
 
     private void loadJSON(){
         Map<String, String> build = new HashMap<>();
-        build.put("userid", String.valueOf(LoginActivity.getUser().getId()));
+        build.put("userId", String.valueOf(LoginActivity.getUser().getId()));
         JSONObject RegisterJson = new JSONObject(build);
         JsonParser jsonParser = new JsonParser();
         JsonObject ToJson = (JsonObject) jsonParser.parse(RegisterJson.toString());

@@ -12,12 +12,12 @@ public class User {
     public final String userName;
     @SerializedName("passWord")
     @Expose
-    public final long passWord;
+    public final String passWord;
 
     public User() {
         this.userId= -1;
         this.userName = "";
-        this.passWord= -1;
+        this.passWord= "";
     }
 
     public long getuserId() {
@@ -26,11 +26,11 @@ public class User {
     public String getuserName() {
         return userName;
     }
-    public long getpassWord() {
+    public String getpassWord() {
         return passWord;
     }
 
-    public User(long _userId, String _userName, long _passWord) {
+    public User(long _userId, String _userName, String _passWord) {
         this.userId= _userId;
         this.userName = _userName;
         this.passWord = _passWord;

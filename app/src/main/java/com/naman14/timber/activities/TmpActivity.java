@@ -49,7 +49,8 @@ public class TmpActivity extends AppCompatActivity {
     private void loadJSON(){
 
         Map<String, String> build = new HashMap<>();
-        build.put("userid", "4");
+        int UserId = LoginActivity.getUser().getId();
+        build.put("userId",String.valueOf(UserId));
         JSONObject RegisterJson = new JSONObject(build);
         JsonParser jsonParser = new JsonParser();
         JsonObject ToJson = (JsonObject) jsonParser.parse(RegisterJson.toString());

@@ -83,9 +83,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(@NonNull Call<authentication> call, @NonNull Response<authentication> response) {
                             if (response.isSuccessful()) {//issuccessful() = status(200)
 
-                                Toast toast=Toast.makeText(LoginActivity.this,"welcome "+ename.getText().toString(),Toast.LENGTH_SHORT);
-                                toast.show();
                                 userBio = response.body();
+                                Toast toast=Toast.makeText(LoginActivity.this,"welcome "+userBio.getAccount()+"userId "+ userBio.getId(),Toast.LENGTH_SHORT);
+                                toast.show();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
                                 finish();

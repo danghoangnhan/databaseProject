@@ -2,16 +2,16 @@ package com.naman14.timber.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 public class authentication {
-    @SerializedName("account")
+    @SerializedName("userName")
     @Expose
     private String account;
     public int getId() {
         return id;
     }
-    @SerializedName("password")
+    @SerializedName("passWord")
     @Expose
     private String password;
-    @SerializedName("id")
+    @SerializedName("userId")
     @Expose
     private int id;
     public authentication(String username,String password,int id){
