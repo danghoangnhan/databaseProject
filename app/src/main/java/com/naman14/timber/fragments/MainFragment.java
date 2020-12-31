@@ -48,7 +48,6 @@ public class MainFragment extends Fragment {
         super.onCreate(savedInstanceState);
         mPreferences = PreferencesUtility.getInstance(getActivity());//設定PreferencesUtility.java的sInstance
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {//建立該fragment對應的ui
         View rootView = inflater.inflate(
@@ -96,12 +95,8 @@ public class MainFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-
         if (mPreferences.lastOpenedIsStartPagePreference()) {//如果最後打開的是起始頁首選項
             mPreferences.setStartPageIndex(viewPager.getCurrentItem());//根據目前的頁面設置起始頁索引
-
-
-
         }
     }
 
@@ -130,7 +125,6 @@ public class MainFragment extends Fragment {
             mFragments.add(fragment);//增加fragment到list
             mFragmentTitles.add(title);//增加title到list
         }
-
         @Override
         public Fragment getItem(int position) {
             return mFragments.get(position);
