@@ -16,14 +16,7 @@ import java.util.List;
 
 public class FolderLoader {
 
-    private static final String[] SUPPORTED_EXT = new String[] {
-            "mp3",
-            "mp4",
-            "m4a",
-            "aac",
-            "ogg",
-            "wav"
-    };
+    private static final String[] SUPPORTED_EXT = new String[] {"mp3", "mp4", "m4a", "aac", "ogg", "wav"};
 
     public static List<File> getMediaFiles(File dir, final boolean acceptDirs) {
         ArrayList<File> list = new ArrayList<>();

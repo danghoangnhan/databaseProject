@@ -1,12 +1,9 @@
 package com.naman14.timber.activities;
-
 import android.os.Bundle;
 import android.util.Log;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.naman14.timber.R;
@@ -25,7 +22,6 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,7 +62,20 @@ public class TmpActivity extends AppCompatActivity {
                 .baseUrl("http://140.136.151.130")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
         JsonApi Jsonapi = retrofit.create(JsonApi.class);
+        Call<ArrayList<Tune>> callTune = Jsonapi.getRandomTune(10);
+        callTune.enqueue(new Callback<ArrayList<Tune>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Tune>> call, Response<ArrayList<Tune>> response) {
+                OUTPUTTUNE = new ArrayList<>(response.body().size());
+                OUTPUTTUNE.addAll(response.body());
+            }
+            @Override
+            public void onFailure(Call<ArrayList<Tune>> call, Throwable t) {
+
+            }
+        });
 
         for (int i = 0; i < OUTPUTTUNE.size(); i++) {
             final Tune sample = OUTPUTTUNE.get(i);

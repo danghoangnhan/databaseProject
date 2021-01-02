@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private String TAG = LoginActivity.class.getSimpleName();
     private EditText ename;
     private EditText epassword;
-    private Button elogin, eregister;
+    private Button elogin, etest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,27 +40,24 @@ public class LoginActivity extends AppCompatActivity {
         ename = findViewById(R.id.editTextTextPersonName);
         epassword = findViewById(R.id.editTextTextPersonName2);
         elogin = findViewById(R.id.button);
-        //eregister = findViewById(R.id.button3);
+        etest = findViewById(R.id.button3);
 
     }
     private void addEvent() {
-        /*
-        eregister.setOnClickListener(new View.OnClickListener() {
+
+        etest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // direct to register activity
-                // Intent: jump screen type // (LoginActivity.this, (jump to) RegisterActivity.class)
-                // direct to tmp activity
                 System.out.println("111");
-                //Intent toRegister = new Intent(LoginActivity.this, RegisterActivity.class);
-                System.out.println("222");
                 Intent toRegister = new Intent(LoginActivity.this, TmpActivity.class);
+                System.out.println("222");
+                //Intent toRegister = new Intent(LoginActivity.this, TmpActivity.class);
                 startActivity(toRegister);
                 finish();
             }
         });
 
-*/
+
         elogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

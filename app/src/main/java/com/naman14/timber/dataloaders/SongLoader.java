@@ -67,7 +67,6 @@ public class SongLoader {
 
             song = new Song(id, albumId, title, duration, "");
         }
-
         if (cursor != null)
             cursor.close();
         return song;
@@ -117,12 +116,10 @@ public class SongLoader {
     public static ArrayList<Song> getAllSongs(Context context) {
         return getSongsForCursor(makeSongCursor(context, null, null));
     }
-
     public static long[] getSongListInFolder(Context context, String path) {
         String[] whereArgs = new String[]{path + "%"};
         return getSongListForCursor(makeSongCursor(context, MediaStore.Audio.Media.DATA + " LIKE ?", whereArgs, null));
     }
-
     public static Song getSongForID(Context context, long id) {
         return getSongForCursor(makeSongCursor(context, "_id=" + String.valueOf(id), null));
     }
