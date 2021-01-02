@@ -1,7 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
-
 android {
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -42,13 +39,11 @@ repositories {
 }
 
 dependencies {
-
-
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'//new add
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'com.google.android.material:material:1.0.0'
-    implementation 'androidx.preference:preference:1.1.0-rc01'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.preference:preference:1.1.1'
     implementation "androidx.cardview:cardview:1.0.0"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
     implementation "androidx.palette:palette:1.0.0"
@@ -59,34 +54,25 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:28.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
-
     implementation "androidx.viewpager2:viewpager2:1.0.0"
-
-
-    implementation "androidx.mediarouter:mediarouter:1.1.0"
-    implementation 'com.google.android.gms:play-services-cast-framework:16.1.2'
-
+    implementation "androidx.mediarouter:mediarouter:1.2.0"
+    implementation 'com.google.android.gms:play-services-cast-framework:19.0.0'
     implementation 'com.nostra13.universalimageloader:universal-image-loader:1.9.4'
     implementation 'net.steamcrafted:materialiconlib:1.1.4'
     implementation 'com.squareup.retrofit:retrofit:1.9.0'
     implementation 'com.squareup.okhttp:okhttp-urlconnection:2.3.0'
     implementation 'com.squareup.okhttp:okhttp:2.3.0'
-    implementation 'com.google.code.gson:gson:2.3'
+    implementation 'com.google.code.gson:gson:2.8.2'
     implementation 'de.Maxr1998:track-selector-lib:1.2'
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.6.1'
-
-
     implementation 'com.afollestad.material-dialogs:core:0.9.0.2'
     implementation 'com.afollestad.material-dialogs:commons:0.9.0.2'
-
     implementation('com.github.naman14:app-theme-engine:0.5.2@aar') {
         transitive = true
     }
-    implementation 'com.google.firebase:firebase-crashlytics:17.2.2'
-
-    implementation 'com.anjlab.android.iab.v3:library:1.0.+'
+    implementation 'com.anjlab.android.iab.v3:library:1.0.45'
     implementation 'org.nanohttpd:nanohttpd:2.3.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
