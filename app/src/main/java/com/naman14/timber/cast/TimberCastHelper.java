@@ -22,10 +22,10 @@ public class TimberCastHelper  {
 
     public static void startCasting(CastSession castSession, Song song) {
 
-        String ipAddress = TimberUtils.getIPAddress(true);
-        URL baseUrl;
+        String ipAddress = TimberUtils.getIPAddress(true);//get ip adress
+        URL baseUrl;//URL
         try {
-            baseUrl = new URL("http", ipAddress, Constants.CAST_SERVER_PORT, "" );
+            baseUrl = new URL("http", ipAddress, Constants.CAST_SERVER_PORT, "" );//得到URL
         } catch (MalformedURLException e) {
             e.printStackTrace();
             return;

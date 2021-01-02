@@ -175,4 +175,7 @@
     <string name="password">密碼</string>
     <string name="login">登入</string>
     <string name="about_dialog_body">我們是第14組</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+   <string name="Create">創作</string>
 </resources>

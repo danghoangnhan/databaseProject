@@ -34,6 +34,7 @@ import com.naman14.timber.R;
 import com.naman14.timber.utils.ATEUtils;
 import com.naman14.timber.utils.Helpers;
 import com.naman14.timber.utils.PreferencesUtility;
+import com.naman14.timber.fragments.PlaylistFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +47,7 @@ public class MainFragment extends Fragment {
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPreferences = PreferencesUtility.getInstance(getActivity());//設定PreferencesUtility.java的sInstance
+        mPreferences = PreferencesUtility.getInstance(getActivity());//設定PreferencesUtility.java的Instance
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {//建立該fragment對應的ui
@@ -88,7 +89,8 @@ public class MainFragment extends Fragment {
     private void setupViewPager(ViewPager viewPager) {//
         Adapter adapter = new Adapter(getChildFragmentManager());//宣告一個adapter(第117行) 的物件裡面有getChildFragmentManager返回一个FragmentManager为了设置和管理当前Fragment内部的Fragment
         adapter.addFragment(new SongsFragment(), this.getString(R.string.songs));//新增歌曲介面
-        adapter.addFragment(new AlbumFragment(), this.getString(R.string.albums));//新增專輯介面
+        adapter.addFragment(new PlaylistFragment(),this.getString(R.string.playlists));//新增專輯介面
+        adapter.addFragment(new TuneFragment(),this.getString(R.string.Create));
         viewPager.setAdapter(adapter);//建立adapter給viewpager
     }
 

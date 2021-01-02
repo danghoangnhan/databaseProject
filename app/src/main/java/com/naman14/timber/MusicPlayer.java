@@ -472,12 +472,12 @@ public class MusicPlayer {
             if (forceShuffle) {
                 mService.setShuffleMode(MusicService.SHUFFLE_NORMAL);
             }
-            final long currentId = mService.getAudioId();
-            final int currentQueuePosition = getQueuePosition();
+            final long currentId = mService.getAudioId();//得到目前播放的歌曲ID
+            final int currentQueuePosition = getQueuePosition();//得到目前queue播放到的位置
             if (position != -1 && currentQueuePosition == position && currentId == list[position]) {
-                final long[] playlist = getQueue();
+                final long[] playlist = getQueue();//得到queue
                 if (Arrays.equals(list, playlist)) {
-                    mService.play();
+                    mService.play();//播放
                     return;
                 }
             }

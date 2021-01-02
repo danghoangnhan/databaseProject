@@ -275,7 +275,7 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
         }
 
         if (!TimberUtils.hasEffectsPanel(BaseActivity.this)) {
-            menu.removeItem(R.id.action_equalizer);
+          //  menu.removeItem(R.id.action_equalizer);
         }
         ATE.applyMenu(this, getATEKey(), menu);
         return true;
@@ -286,10 +286,10 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
         switch (item.getItemId()) {
             case android.R.id.home:
                 super.onBackPressed();
-                return true;
+                return true;/*
             case R.id.action_settings:
                 NavigationUtils.navigateToSettings(this);
-                return true;
+                return true;*/
             case R.id.action_shuffle:
                 Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -302,10 +302,10 @@ public class BaseActivity extends ATEActivity implements ServiceConnection, Musi
                 return true;
             case R.id.action_search:
                 NavigationUtils.navigateToSearch(this);
-                return true;
+                return true;/*
             case R.id.action_equalizer:
                 NavigationUtils.navigateToEqualizer(this);
-                return true;
+                return true;*/
 
         }
         return super.onOptionsItemSelected(item);
