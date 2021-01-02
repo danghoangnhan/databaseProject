@@ -26,37 +26,41 @@ public class BaseSongAdapter<V extends RecyclerView.ViewHolder> extends Recycler
     @Override
     public V onCreateViewHolder(ViewGroup parent, int viewType) {
         return null;
-    }
+    }//V
 
     @Override
-    public void onBindViewHolder(V holder, int position) {
+    public void onBindViewHolder(V holder, int position) {//V
 
     }
 
     @Override
     public int getItemCount() {
         return 0;
-    }
+    }//V
 
     @Override
     public int getItemViewType(int position) {
         return super.getItemViewType(position);
-    }
+    }//
 
     public class ItemHolder extends RecyclerView.ViewHolder {
 
         public ItemHolder(View view) {
             super(view);
-        }
-
+        }                                            // public ViewHolder(View itemView) {
+                                                     //     if (itemView == null) {
+                                                     //             throw new IllegalArgumentException("itemView may not be null")
+                                                     //        }
+                                                     //         this.itemView = itemView;
+                                                     //}
     }
 
     public void playAll(final Activity context, final long[] list, int position,
                         final long sourceId, final TimberUtils.IdType sourceType,
                         final boolean forceShuffle, final Song currentSong, boolean navigateNowPlaying) {
 
-        if (context instanceof BaseActivity) {
-            CastSession castSession = ((BaseActivity) context).getCastSession();
+        if (context instanceof BaseActivity) {//目前使用的介面是否在baseActivity
+            CastSession castSession = ((BaseActivity) context).getCastSession();//從baseActivity 得到 mCastSession 的狀態是 start?是 resume?還是ended
             if (castSession != null) {
                 navigateNowPlaying = false;
                 TimberCastHelper.startCasting(castSession, currentSong);
@@ -70,8 +74,6 @@ public class BaseSongAdapter<V extends RecyclerView.ViewHolder> extends Recycler
         if (navigateNowPlaying) {
             NavigationUtils.navigateToNowplaying(context, true);
         }
-
-
     }
     public void removeSongAt(int i){}
     public void updateDataSet(List<Song> arraylist) {}

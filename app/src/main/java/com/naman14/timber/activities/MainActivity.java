@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     };
 
-    private Runnable navigatePlaylist = new Runnable() {
+   /* private Runnable navigatePlaylist = new Runnable() {
         public void run() {
             navigationView.getMenu().findItem(R.id.nav_playlists).setChecked(true);
             Fragment fragment = new PlaylistFragment();
@@ -95,6 +95,8 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         }
     };
+    */
+
 
     private Runnable navigateFolder = new Runnable() {
         public void run() {
@@ -178,7 +180,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         setContentView(R.layout.activity_main);
 
         navigationMap.put(Constants.NAVIGATE_LIBRARY, navigateLibrary);
-        navigationMap.put(Constants.NAVIGATE_PLAYLIST, navigatePlaylist);
+        //navigationMap.put(Constants.NAVIGATE_PLAYLIST, navigatePlaylist);
         navigationMap.put(Constants.NAVIGATE_QUEUE, navigateQueue);
         navigationMap.put(Constants.NAVIGATE_NOWPLAYING, navigateNowplaying);
         navigationMap.put(Constants.NAVIGATE_ALBUM, navigateAlbum);
@@ -335,27 +337,27 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         if (!isDarkTheme) {
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music);
-            navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play);
+
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_black_24dp);
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music);
-            navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
+            //navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
             navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information);
-            navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_black);
+
         } else {
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music_white);
-            navigationView.getMenu().findItem(R.id.nav_playlists).setIcon(R.drawable.playlist_play_white);
+
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note_white);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_white_24dp);
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);
-            navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
+            //navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings_white);
             navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information_white);
-            navigationView.getMenu().findItem(R.id.nav_donate).setIcon(R.drawable.payment_white);
+
         }
 
         try {
             if (!BillingProcessor.isIabServiceAvailable(this)) {
-                navigationView.getMenu().removeItem(R.id.nav_donate);
+                //navigationView.getMenu().removeItem(R.id.nav_donate);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -371,10 +373,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 runnable = navigateLibrary;
 
                 break;
-            case R.id.nav_playlists:
+            /*case R.id.nav_playlists:
                 runnable = navigatePlaylist;
 
                 break;
+                */
+
             case R.id.nav_folders:
                 runnable = navigateFolder;
 
@@ -390,9 +394,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 runnable = navigateQueue;
 
                 break;
-            case R.id.nav_settings:
+            /*
+                case R.id.nav_settings:
                 NavigationUtils.navigateToSettings(MainActivity.this);
                 break;
+
+             */
             case R.id.nav_about:
                 mDrawerLayout.closeDrawers();
                 Handler handler = new Handler();
@@ -404,10 +411,12 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
                 }, 350);
 
                 break;
-            case R.id.nav_donate:
+            /*case R.id.nav_donate:
                 startActivity(new Intent(MainActivity.this, DonateActivity.class));
                 break;
+            */
         }
+
 
         if (runnable != null) {
             menuItem.setChecked(true);

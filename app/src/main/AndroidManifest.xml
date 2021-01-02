@@ -17,12 +17,13 @@
         android:name=".TimberApp"
         android:allowBackup="false"
         android:icon="@drawable/login_image"
-        android:label="Timber"
+        android:label="Music Creator"
         android:networkSecurityConfig="@xml/network_security"
         android:theme="@style/AppTheme.FullScreen.Light"
         tools:replace="android:allowBackup, android:label"
         tools:targetApi="n">
-        <activity android:name=".activities.TmpActivity"></activity>
+
+        <activity android:name=".activities.TmpActivity" />
         <activity android:name=".activities.MostPlayActivity" />
         <activity android:name=".activities.LastAddActivity" />
         <activity android:name=".activities.HistoryActivity" />
@@ -36,6 +37,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.DownloadActivity"></activity>
         <activity
             android:name=".activities.MainActivity"
             android:label="Music Creator"
@@ -160,5 +162,5 @@
                 android:resource="@xml/widget_small" />
         </receiver>
     </application>
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 </manifest>
