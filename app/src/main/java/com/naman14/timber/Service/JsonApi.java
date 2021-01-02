@@ -1,10 +1,12 @@
 package com.naman14.timber.Service;
 
 import com.google.gson.JsonObject;
+import com.naman14.timber.models.Download;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.models.Song;
-import com.naman14.timber.models.Tune;
+
 import com.naman14.timber.models.authentication;
+import com.squareup.okhttp.ResponseBody;
 
 import java.util.List;
 
@@ -25,5 +27,7 @@ public interface JsonApi {
     Call<List<Playlist>> getPlaylist(@Body JsonObject getPlaylist_body);
     Call<List<Playlist>> getPlaylist();
     @GET("DownloadTuneFile")
-    Call<List<Tune>> DownloadTuneFile(@Query("tuneId") int id);
+    Call<ResponseBody> downloadTuneFile(@Query("Id")long tuneId);
+    @GET("DownloadSongFile")
+    Call<ResponseBody> downloadSongFile(@Query("songId") int songId);
 }
