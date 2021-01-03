@@ -21,7 +21,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import java.io.IOException;
@@ -39,8 +38,8 @@ public class CreateActivity extends AppCompatActivity {
 
     private Activity activity;
 
-    private String outputPath ;
-    private EditText Filename;
+    private String outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +"audio_mixer_output.mp3";
+
     private List<com.naman14.timber.activities.Input> inputs = new ArrayList<>();
     private AudioMixer audioMixer = null;
     @Override
@@ -49,9 +48,6 @@ public class CreateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create);
 
         activity = this;
-
-
-        //System.out.println("outpath = "+outputPath);
 
         findViewById(R.id.add_audio_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,10 +62,6 @@ public class CreateActivity extends AppCompatActivity {
                 if(inputs.size() < 1){
                     Toast.makeText(activity, "Add at least one audio.", Toast.LENGTH_SHORT).show();
                 }else{
-                    Filename = findViewById(R.id.filename);
-                    System.out.println("filename1 = "+Filename);
-                    System.out.println("filename2 = "+Filename.getText().toString());
-                    outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +Filename.getText().toString()+".mp3";
                     startMixing();
                 }
             }
