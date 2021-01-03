@@ -65,7 +65,7 @@ public class MainFragment extends Fragment {
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);//把fragement_main.xml 中的 viewpager讀進來 UI: 可左右滑動
         if (viewPager != null) {//當viewpage不是空的時候
             setupViewPager(viewPager);//創一個viewpager
-            viewPager.setOffscreenPageLimit(3);//除了目前的頁面以外加載2個頁面
+            viewPager.setOffscreenPageLimit(2);//除了目前的頁面以外加載2個頁面
         }
 
         TabLayout tabLayout = (TabLayout) rootView.findViewById(R.id.tabs);//把fragment_main.xml的tab加載進來
@@ -90,8 +90,7 @@ public class MainFragment extends Fragment {
         Adapter adapter = new Adapter(getChildFragmentManager());//宣告一個adapter(第117行) 的物件裡面有getChildFragmentManager返回一个FragmentManager为了设置和管理当前Fragment内部的Fragment
         adapter.addFragment(new SongsFragment(), this.getString(R.string.songs));//新增歌曲介面
         adapter.addFragment(new PlaylistFragment(),this.getString(R.string.playlists));//新增專輯介面
-        adapter.addFragment(new CreateFragment(),this.getString(R.string.Create));
-
+        adapter.addFragment(new TuneFragment(),this.getString(R.string.Create));
         viewPager.setAdapter(adapter);//建立adapter給viewpager
     }
 
