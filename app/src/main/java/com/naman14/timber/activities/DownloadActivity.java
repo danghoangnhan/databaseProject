@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 
-import com.google.firebase.crashlytics.internal.network.HttpResponse;
+
 import com.naman14.timber.R;
 import com.naman14.timber.Service.JsonApi;
 import com.naman14.timber.models.Playlist;
@@ -34,7 +34,7 @@ public class DownloadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
-        addEvent();
+       // addEvent();
     }
     private void addEvent() {
         Retrofit retrofit = new Retrofit.Builder()
