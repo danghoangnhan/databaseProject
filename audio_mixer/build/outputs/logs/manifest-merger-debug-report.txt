@@ -1,5 +1,6 @@
 -- Merging decision tree log ---
 manifest
+<<<<<<< HEAD
 ADDED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
 INJECTED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
 INJECTED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
@@ -35,3 +36,40 @@ INJECTED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManife
 		INJECTED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
 		ADDED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
 		INJECTED from E:\GitHub\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+=======
+ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+	package
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:3:5-38
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+	android:versionName
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+	android:versionCode
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:1-5:12
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+	xmlns:android
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml:2:11-69
+uses-sdk
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		ADDED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+		INJECTED from C:\Users\User\Desktop\databaseFinaleProject\audio_mixer\src\main\AndroidManifest.xml
+>>>>>>> 9c2253a25dfce654226c6e1f33f9bb48901496a8
