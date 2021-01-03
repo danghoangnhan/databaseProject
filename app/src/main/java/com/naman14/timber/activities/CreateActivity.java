@@ -38,8 +38,7 @@ public class CreateActivity extends AppCompatActivity {
     private static final int AUDIO_CHOOSE_REQUEST_CODE = 1;
 
     private Activity activity;
-
-    private String outputPath ;
+    private String outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +"audio_mixer_output.mp3";
     private EditText Filename;
     private List<com.naman14.timber.activities.Input> inputs = new ArrayList<>();
     private AudioMixer audioMixer = null;
@@ -66,11 +65,13 @@ public class CreateActivity extends AppCompatActivity {
                 if(inputs.size() < 1){
                     Toast.makeText(activity, "Add at least one audio.", Toast.LENGTH_SHORT).show();
                 }else{
-                    Filename = findViewById(R.id.filename);
+                    /*Filename = findViewById(R.id.filename);
                     System.out.println("filename1 = "+Filename);
                     System.out.println("filename2 = "+Filename.getText().toString());
                     outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +Filename.getText().toString()+".mp3";
+                    */
                     startMixing();
+
                 }
             }
         });
