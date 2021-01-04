@@ -26,9 +26,9 @@ public interface JsonApi {
     @GET("getSongByPlayListId")
     Call<Song> getSongByPlayListId(@Query("Id") int id);
     @POST("getPlaylist")
-    Call<List<Playlist>> getPlaylist(@Body JsonObject getPlaylist_body);
+    Call<List<Playlist>> getPlaylist(@Query("Id") JsonObject tuneId);
     @GET("DownloadTuneFile")
-    Call<ResponseBody> downloadTuneFile(@Query("Id")long tuneId);
+    Call<ResponseBody> downloadTuneFile(@Query("tuneId")long tuneId);
     @GET("DownloadSongFile")
     Call<ResponseBody> downloadSongFile(@Query("songId") int songId);
     @POST("getRandomTune")

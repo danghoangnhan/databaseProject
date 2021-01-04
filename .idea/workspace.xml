@@ -11,17 +11,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98de30d-657e-4160-8e0c-398c4b978dc8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/TuneAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/Service/JsonApi.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/Service/JsonApi.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/SongLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/SongLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/TuneLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/TuneLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/AlbumFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/AlbumFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/TuneFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/TuneFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/SongsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/SongsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/models/Tune.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/models/Tune.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioMixer.java" beforeDir="false" afterPath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioMixer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R52N406X1PR]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R58MB3247QJ]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -145,14 +153,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1609702313788">
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1609752178582">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609702313788" />
+    <state x="690" y="274" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609752178582" />
     <state x="713" y="321" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609705879765">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="713" y="321" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1609705879765" />
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1609766704778">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1609766704778" />
     <state x="717" y="388" width="485" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1609709060005">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -161,26 +173,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609727145741" />
+    <state x="690" y="266" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1609756400853">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="266" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609756400853" />
+    <state x="788" y="283" key="AndroidCreateXmlResourceDialog" timestamp="1609748947228">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="788" y="283" key="AndroidCreateXmlResourceDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609748947228" />
     <state x="740" y="259" key="FileChooserDialogImpl" timestamp="1609705886853">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609705886853" />
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609739397096">
+    <state width="1877" height="457" key="GridCell.Tab.0.bottom" timestamp="1609760060256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397096" />
-    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609739397095">
+    <state width="1877" height="457" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609760060256" />
+    <state width="1877" height="457" key="GridCell.Tab.0.center" timestamp="1609760060256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
-    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609739397095">
+    <state width="1877" height="457" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609760060256" />
+    <state width="1877" height="457" key="GridCell.Tab.0.left" timestamp="1609760060254">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
-    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609739397095">
+    <state width="1877" height="457" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609760060254" />
+    <state width="1877" height="457" key="GridCell.Tab.0.right" timestamp="1609760060256">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
+    <state width="1877" height="457" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609760060256" />
     <state x="512" y="230" width="587" height="534" key="find.popup" timestamp="1609701666251">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

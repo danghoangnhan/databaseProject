@@ -16,11 +16,14 @@ package com.naman14.timber.activities;
 
 import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.snackbar.Snackbar;
+
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -79,7 +82,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             navigationView.getMenu().findItem(R.id.nav_library).setChecked(true);
             Fragment fragment = new MainFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();//載入Mainfragament，不會拋出異常版本的commit()方法，會新增動作
+            transaction.replace(R.id.fragment_container, fragment).commitAllowingStateLoss();
 
 
         }
@@ -191,12 +194,9 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         setPanelSlideListeners(panelLayout);
 
-        navDrawerRunnable.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                setupDrawerContent(navigationView);
-                setupNavigationIcons(navigationView);
-            }
+        navDrawerRunnable.postDelayed(() -> {
+            setupDrawerContent(navigationView);
+            setupNavigationIcons(navigationView);
         }, 700);
 
 
@@ -233,12 +233,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             contentRoot.addView(LayoutInflater.from(this)
                     .inflate(R.layout.fragment_cast_mini_controller, null), params);
 
-            findViewById(R.id.castMiniController).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    startActivity(new Intent(MainActivity.this, ExpandedControllerActivity.class));
-                }
-            });
+            findViewById(R.id.castMiniController).setOnClickListener(view -> startActivity(new Intent(MainActivity.this, ExpandedControllerActivity.class)));
         }
 
     }
@@ -254,6 +249,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         new initQuickControls().execute("");
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkPermissionAndThenLoad() {
         //check for permission
         if (Nammu.checkPermission(Manifest.permission.READ_EXTERNAL_STORAGE) && Nammu.checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
@@ -262,12 +258,7 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
             if (Nammu.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
                 Snackbar.make(panelLayout, "",
                         Snackbar.LENGTH_INDEFINITE)
-                        .setAction("OK", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Nammu.askForPermission(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionReadstorageCallback);
-                            }
-                        }).show();
+                        .setAction("OK", view -> Nammu.askForPermission(MainActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionReadstorageCallback)).show();
             } else {
                 Nammu.askForPermission(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, permissionReadstorageCallback);
             }
@@ -317,22 +308,16 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     private void setupNavigationIcons(NavigationView navigationView) {
 
-        //material-icon-lib currently doesn't work with navigationview of design support library 22.2.0+
-        //set icons manually for now
-        //https://github.com/code-mc/material-icon-lib/issues/15
 
         if (!isDarkTheme) {
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music);
-
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_black_24dp);
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music);
             //navigationView.getMenu().findItem(R.id.nav_settings).setIcon(R.drawable.settings);
             navigationView.getMenu().findItem(R.id.nav_about).setIcon(R.drawable.information);
-
         } else {
             navigationView.getMenu().findItem(R.id.nav_library).setIcon(R.drawable.library_music_white);
-
             navigationView.getMenu().findItem(R.id.nav_queue).setIcon(R.drawable.music_note_white);
             navigationView.getMenu().findItem(R.id.nav_folders).setIcon(R.drawable.ic_folder_open_white_24dp);
             navigationView.getMenu().findItem(R.id.nav_nowplaying).setIcon(R.drawable.bookmark_music_white);

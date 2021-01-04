@@ -14,6 +14,7 @@
 
 package com.naman14.timber.fragments;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
@@ -43,16 +44,18 @@ import java.util.List;
 
 public class SongsFragment extends Fragment implements MusicStateListener {
 
-    private SongsListAdapter mAdapter;
+    private static SongsListAdapter mAdapter;
     private BaseRecyclerView recyclerView;
     private PreferencesUtility mPreferences;
-
+    private Activity thisActivity = this.getActivity();
     @Override
     public void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPreferences = PreferencesUtility.getInstance(getActivity());
     }
-
+    public static SongsListAdapter getmAdapter(){
+        return  mAdapter;
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(
@@ -74,7 +77,7 @@ public class SongsFragment extends Fragment implements MusicStateListener {
             mAdapter.notifyDataSetChanged();
     }
 
-    private void reloadAdapter() {
+    public void reloadAdapter() {
         new AsyncTask<Void, Void, Void>() {
             @Override
             protected Void doInBackground(final Void... unused) {
@@ -152,6 +155,9 @@ public class SongsFragment extends Fragment implements MusicStateListener {
 
         @Override
         protected void onPreExecute() {
+        }
+        public  void update(){
+            mAdapter.notifyDataSetChanged();
         }
     }
 }

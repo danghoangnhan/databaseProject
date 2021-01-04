@@ -56,6 +56,7 @@ public class AlbumFragment extends Fragment {
         isGrid = mPreferences.isAlbumsInGrid();
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(

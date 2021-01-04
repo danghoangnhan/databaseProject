@@ -11,9 +11,7 @@
  * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  * See the GNU General Public License for more details.
  */
-
 package com.naman14.timber.dataloaders;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -28,7 +26,6 @@ import com.naman14.timber.utils.PreferencesUtility;
 
 import java.util.ArrayList;
 import java.util.List;
-
 public class SongLoader {
     private static final long[] sEmptyList = new long[0];
     public static ArrayList<Song> getSongsForCursor(Cursor cursor) {
@@ -138,13 +135,7 @@ public class SongLoader {
     public static Song songFromFile(String filePath) {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         mmr.setDataSource(filePath);
-        return new Song(
-                -1,
-                -1,
-                mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
-                Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)),
-                ""
-        );
+        return new Song(-1, -1, mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE), Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)), "");
     }
 
 }

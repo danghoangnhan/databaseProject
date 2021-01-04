@@ -104,30 +104,16 @@ public class AudioMixer {
     public AudioMixer(FileDescriptor fd) throws IOException{
         this(fd, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
     }
-
-    /*
-     * private for now
-     */
     @TargetApi(26)
     private AudioMixer(FileDescriptor fd, int mediaMuxerOutputFormat) throws IOException{
         muxer = new MediaMuxer(fd, mediaMuxerOutputFormat);
         isMuxerExternal = false;
     }
 
-
-    /*
-    * Also external muxer can be used for muxing.
-    * As for example, if we want to add audio with video,
-    * we have to pass the muxer which is being used for video muxing.
-    * Muxer starting, stopping, releasing must be handled externally.
-    * In this case we must start processing after the muxer has started.
-    * */
     public AudioMixer(MediaMuxer muxer){
         this.muxer = muxer;
         isMuxerExternal = true;
     }
-
-
     private MediaFormat createOutputFormat(int sampleRate, int bitRate, int channelCount){
         MediaFormat format = new MediaFormat();
         format.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_AUDIO_AAC);
@@ -135,7 +121,7 @@ public class AudioMixer {
         format.setInteger(MediaFormat.KEY_SAMPLE_RATE, sampleRate);
         format.setInteger(MediaFormat.KEY_BIT_RATE, bitRate);
         format.setInteger(MediaFormat.KEY_CHANNEL_COUNT, channelCount);
-        format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE,1024 * 256); // Needs to be large enough to avoid BufferOverflowException
+        format.setInteger(MediaFormat.KEY_MAX_INPUT_SIZE,1024 * 256);
         return format;
     }
 
@@ -146,10 +132,6 @@ public class AudioMixer {
         if(audioInputList.size() < 1) throw new UnsupportedOperationException("There should be at least one audio input.");
 
         if(mixingType == MixingType.PARALLEL){
-
-            // Here we find the AudioInput which holds the maximum duration.
-            // Maximum duration holder input will be considered as the base for other operations
-            // and it's duration is our output duration
             outputDurationUs = Long.MIN_VALUE;
             for(AudioInput input: audioInputList){
                 if(input.getDurationUs() > outputDurationUs) {

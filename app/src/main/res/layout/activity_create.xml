@@ -8,38 +8,43 @@
     tools:context=".activities.CreateActivity">
 
     <LinearLayout
-        android:layout_width="241dp"
-        android:layout_height="225dp"
+        android:layout_width="265dp"
+        android:layout_height="250dp"
         android:layout_centerInParent="true"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="232dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/add_audio_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Add audio" />
 
         <Button
             android:id="@+id/remove_audio_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Remove last added audio" />
 
         <Button
             android:id="@+id/mix_btn"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Mix" />
+
+        <Button
+            android:id="@+id/random"
+            android:layout_width="match_parent"
+            android:layout_height="84dp"
+            android:text="random" />
 
     </LinearLayout>
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/newName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
@@ -49,6 +54,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

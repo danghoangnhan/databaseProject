@@ -120,9 +120,6 @@ public class TuneLoader {
         return new Tune(
                 -1,
                 mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
-                //Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)),
-                ""
-        );
+                "");
     }
-
 }
