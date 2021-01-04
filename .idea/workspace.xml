@@ -12,48 +12,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d98de30d-657e-4160-8e0c-398c4b978dc8" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/MusicService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/MusicService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/Post.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/AudioInputSettingsDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/AudioInputSettingsDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/BaseActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/BaseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/CreateActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/CreateActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/DonateActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/DownloadActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/DownloadActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/HistoryActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/LoginActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/NowPlayingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/NowPlayingActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/PlaylistDetailActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/PlaylistDetailActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/RegisterActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/RegisterActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/SettingsActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/SettingsActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/AlbumAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/AlbumAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/AlbumSongsAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/AlbumSongsAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/ArtistSongAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/ArtistSongAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/BaseQueueAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/BaseQueueAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/PlayingQueueAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/PlayingQueueAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/SlidingQueueAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/SlidingQueueAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/SongsListAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/SongsListAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/FolderLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/FolderLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/SongLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dataloaders/SongLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/AddPlaylistDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/AddPlaylistDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/CreatePlaylistDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/CreatePlaylistDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/LastFmLoginDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/LastFmLoginDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/StorageSelectDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/dialogs/StorageSelectDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/PlaylistFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/PlaylistFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/SettingsFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/SongsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/SongsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/permissions/Nammu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/permissions/Nammu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/provider/SearchHistory.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/provider/SearchHistory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/subfragments/SubStyleSelectorFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/subfragments/SubStyleSelectorFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_main.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playlist.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_playlist.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioBufferConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioBufferConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioDecoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioDecoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioMixer.java" beforeDir="false" afterPath="$PROJECT_DIR$/audio_mixer/src/main/java/com/example/audio_mixer/AudioMixer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/activities/CreateActivity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,30 +136,30 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="717" y="388" width="485" height="269" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1609709060005" />
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609700474190">
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1609727145741">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609700474190" />
+    <state x="690" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1609727145741" />
     <state x="740" y="259" key="FileChooserDialogImpl" timestamp="1609705886853">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609705886853" />
-    <state width="1877" height="255" key="GridCell.Tab.0.bottom" timestamp="1609713383872">
+    <state width="1877" height="383" key="GridCell.Tab.0.bottom" timestamp="1609726903496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609713383872" />
-    <state width="1877" height="255" key="GridCell.Tab.0.center" timestamp="1609713383871">
+    <state width="1877" height="383" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
+    <state width="1877" height="383" key="GridCell.Tab.0.center" timestamp="1609726903496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609713383871" />
-    <state width="1877" height="255" key="GridCell.Tab.0.left" timestamp="1609713383871">
+    <state width="1877" height="383" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
+    <state width="1877" height="383" key="GridCell.Tab.0.left" timestamp="1609726903496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609713383871" />
-    <state width="1877" height="255" key="GridCell.Tab.0.right" timestamp="1609713383872">
+    <state width="1877" height="383" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
+    <state width="1877" height="383" key="GridCell.Tab.0.right" timestamp="1609726903496">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="255" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609713383872" />
+    <state width="1877" height="383" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
     <state x="512" y="230" width="587" height="534" key="find.popup" timestamp="1609701666251">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

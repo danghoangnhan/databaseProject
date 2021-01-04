@@ -28,7 +28,6 @@
         android:theme="@style/AppTheme.FullScreen.Light"
         tools:replace="android:allowBackup, android:label"
         tools:targetApi="n">
-        <activity android:name=".activities.CreateActivity"></activity>
         <activity android:name=".activities.TmpActivity" />
         <activity android:name=".activities.MostPlayActivity" />
         <activity android:name=".activities.LastAddActivity" />
