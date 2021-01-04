@@ -26,6 +26,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,6 +45,7 @@ import com.naman14.timber.Service.JsonApi;
 import com.naman14.timber.activities.LoginActivity;
 import com.naman14.timber.adapters.PlaylistAdapter;
 import com.naman14.timber.dataloaders.PlaylistLoader;
+import com.naman14.timber.dialogs.AddPlaylistDialog;
 import com.naman14.timber.dialogs.CreatePlaylistDialog;
 import com.naman14.timber.models.Playlist;
 import com.naman14.timber.subfragments.PlaylistPagerFragment;
@@ -67,14 +69,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlaylistFragment extends Fragment {
     PlaylistAdapter playlistAdapters;
-    ArrayList<Playlist> OUTPUT;
+    ArrayList<Playlist> OUTPUT= null;
     private RecyclerView recyclerView;
-    private int playlistcount;
     private FragmentStatePagerAdapter adapter;//宣告adapter
     private MultiViewPager pager;//宣告pager
     private GridLayoutManager layoutManager;//九宮格式的呈現list(原本是使用gridview來呈現，但是近期recycle view 可以利用這個模組來達成 )
     private RecyclerView.ItemDecoration itemDecoration;//itemdecoration 用來裝飾介面
     private PreferencesUtility mPreferences;
+    private Button createPlayListButton;
+    private  int playlistcount;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -82,21 +85,22 @@ public class PlaylistFragment extends Fragment {
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
         pager = rootView.findViewById(R.id.playlistpager);
         recyclerView  =rootView.findViewById(R.id.recyclerview);
-
+        createPlayListButton = rootView.findViewById(R.id.addPlaylist);
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
 
         ab.setTitle(" ");
         initViews();
         loadJSON();
-        playlistcount = 10;
+        playlistcount = getItemcount();
         return rootView;
     }
-
     private void initViews(){
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
+        createPlayListButton.setOnClickListener(v->{
+        });
     }
 
     private void loadJSON(){
@@ -141,9 +145,14 @@ public class PlaylistFragment extends Fragment {
     }
     public void updatePlaylists(final long id) {
         loadJSON();
-        playlistcount = OUTPUT.size();
+        playlistcount = getItemcount();
     }
-    
+    public int getItemcount(){
+        if(OUTPUT==null)
+            return 0;
+        else
+            return OUTPUT.size();
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -7,6 +7,8 @@ import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
 import java.io.FileDescriptor;
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -84,6 +86,7 @@ public class AudioMixer {
     */
     private Thread processingThread;
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public AudioMixer(String outputFilePath) throws IOException{
         this(outputFilePath, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4);
     }
@@ -91,6 +94,7 @@ public class AudioMixer {
     /*
     * private for now
     */
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     private AudioMixer(String outputFilePath, int mediaMuxerOutputFormat) throws IOException{
         muxer = new MediaMuxer(outputFilePath, mediaMuxerOutputFormat);
         isMuxerExternal = false;
@@ -123,6 +127,7 @@ public class AudioMixer {
         isMuxerExternal = true;
     }
 
+
     private MediaFormat createOutputFormat(int sampleRate, int bitRate, int channelCount){
         MediaFormat format = new MediaFormat();
         format.setString(MediaFormat.KEY_MIME, MediaFormat.MIMETYPE_AUDIO_AAC);
@@ -135,6 +140,7 @@ public class AudioMixer {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public void start() throws IOException {
         if(started || processing || mixingDone) throw new IllegalStateException("Wrong state. AudioMixer can't start.");
         if(audioInputList.size() < 1) throw new UnsupportedOperationException("There should be at least one audio input.");

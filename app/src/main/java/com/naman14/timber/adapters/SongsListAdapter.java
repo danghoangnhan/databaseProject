@@ -131,53 +131,47 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
 
     private void setOnPopupMenuListener(ItemHolder itemHolder, final int position) {
 
-        itemHolder.popupMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        itemHolder.popupMenu.setOnClickListener(v -> {
 
-                final PopupMenu menu = new PopupMenu(mContext, v);
+            final PopupMenu menu = new PopupMenu(mContext, v);
 
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.popup_song_remove_playlist:
-                                TimberUtils.removeFromPlaylist(mContext, arraylist.get(position).id, playlistId);
-                                removeSongAt(position);
-                                notifyItemRemoved(position);
-                                break;
-                            case R.id.popup_song_play:
-                                MusicPlayer.playAll(mContext, songIDs, position, -1, TimberUtils.IdType.NA, false);
-                                break;
-                            case R.id.popup_song_play_next:
-                                long[] ids = new long[1];
-                                ids[0] = arraylist.get(position).id;
-                                MusicPlayer.playNext(mContext, ids, -1, TimberUtils.IdType.NA);
-                                break;
-                            case R.id.popup_song_addto_queue:
-                                long[] id = new long[1];
-                                id[0] = arraylist.get(position).id;
-                                MusicPlayer.addToQueue(mContext, id, -1, TimberUtils.IdType.NA);
-                                break;
-                            case R.id.popup_song_addto_playlist:
-                                AddPlaylistDialog.newInstance(arraylist.get(position)).show(mContext.getSupportFragmentManager(), "ADD_PLAYLIST");
-                                break;
-                            case R.id.popup_song_share:
-                               TimberUtils.shareTrack(mContext, arraylist.get(position).id);
-                                break;
-                            case R.id.popup_song_delete:
-                                long[] deleteIds = {arraylist.get(position).id};
-                                TimberUtils.showDeleteDialog(mContext,arraylist.get(position).songName, deleteIds, SongsListAdapter.this, position);
-                                break;
-                        }
-                        return false;
-                    }
-                });
-                menu.inflate(R.menu.popup_song);
-                menu.show();
-                if (isPlaylist)
-                    menu.getMenu().findItem(R.id.popup_song_remove_playlist).setVisible(true);
-            }
+            menu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.popup_song_remove_playlist:
+                        TimberUtils.removeFromPlaylist(mContext, arraylist.get(position).id, playlistId);
+                        removeSongAt(position);
+                        notifyItemRemoved(position);
+                        break;
+                    case R.id.popup_song_play:
+                        MusicPlayer.playAll(mContext, songIDs, position, -1, TimberUtils.IdType.NA, false);
+                        break;
+                    case R.id.popup_song_play_next:
+                        long[] ids = new long[1];
+                        ids[0] = arraylist.get(position).id;
+                        MusicPlayer.playNext(mContext, ids, -1, TimberUtils.IdType.NA);
+                        break;
+                    case R.id.popup_song_addto_queue:
+                        long[] id = new long[1];
+                        id[0] = arraylist.get(position).id;
+                        MusicPlayer.addToQueue(mContext, id, -1, TimberUtils.IdType.NA);
+                        break;
+                    case R.id.popup_song_addto_playlist:
+                        AddPlaylistDialog.newInstance(arraylist.get(position)).show(mContext.getSupportFragmentManager(), "ADD_PLAYLIST");
+                        break;
+                    case R.id.popup_song_share:
+                       TimberUtils.shareTrack(mContext, arraylist.get(position).id);
+                        break;
+                    case R.id.popup_song_delete:
+                        long[] deleteIds = {arraylist.get(position).id};
+                        TimberUtils.showDeleteDialog(mContext,arraylist.get(position).songName, deleteIds, SongsListAdapter.this, position);
+                        break;
+                }
+                return false;
+            });
+            menu.inflate(R.menu.popup_song);
+            menu.show();
+            if (isPlaylist)
+                menu.getMenu().findItem(R.id.popup_song_remove_playlist).setVisible(true);
         });
     }
 
@@ -234,21 +228,15 @@ public class SongsListAdapter extends BaseSongAdapter<SongsListAdapter.ItemHolde
         @Override
         public void onClick(View v) {
             final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    playAll(mContext, songIDs, getAdapterPosition(), -1,
-                            TimberUtils.IdType.NA, false,
-                            arraylist.get(getAdapterPosition()), false);
-                    Handler handler1 = new Handler();
-                    handler1.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            notifyItemChanged(currentlyPlayingPosition);
-                            notifyItemChanged(getAdapterPosition());
-                        }
-                    }, 50);
-                }
+            handler.postDelayed(() -> {
+                playAll(mContext, songIDs, getAdapterPosition(), -1,
+                        TimberUtils.IdType.NA, false,
+                        arraylist.get(getAdapterPosition()), false);
+                Handler handler1 = new Handler();
+                handler1.postDelayed(() -> {
+                    notifyItemChanged(currentlyPlayingPosition);
+                    notifyItemChanged(getAdapterPosition());
+                }, 50);
             }, 100);
 
 

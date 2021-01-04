@@ -14,9 +14,6 @@ import com.naman14.timber.models.Song;
 
 import java.util.List;
 
-/**
- * Created by naman on 20/12/15.
- */
 public class AddPlaylistDialog extends DialogFragment {
 
     public static AddPlaylistDialog newInstance(Song song) {
@@ -44,19 +41,16 @@ public class AddPlaylistDialog extends DialogFragment {
         for (int i = 0; i < playlists.size(); i++) {
             chars[i + 1] = playlists.get(i).playlistName;
         }
-        return new MaterialDialog.Builder(getActivity()).title("Add to playlist").items(chars).itemsCallback(new MaterialDialog.ListCallback() {
-            @Override
-            public void onSelection(MaterialDialog dialog, View itemView, int which, CharSequence text) {
-                long[] songs = getArguments().getLongArray("songs");
-                if (which == 0) {
-                    CreatePlaylistDialog.newInstance(songs).show(getActivity().getSupportFragmentManager(), "CREATE_PLAYLIST");
-                    return;
-                }
-
-                MusicPlayer.addToPlaylist(getActivity(), songs, playlists.get(which - 1).listId);
-                dialog.dismiss();
-
+        return new MaterialDialog.Builder(getActivity()).title("Add to playlist").items(chars).itemsCallback((dialog, itemView, which, text) -> {
+            long[] songs = getArguments().getLongArray("songs");
+            if (which == 0) {
+                CreatePlaylistDialog.newInstance(songs).show(getActivity().getSupportFragmentManager(), "CREATE_PLAYLIST");
+                return;
             }
+
+            MusicPlayer.addToPlaylist(getActivity(), songs, playlists.get(which - 1).listId);
+            dialog.dismiss();
+
         }).build();
     }
 }

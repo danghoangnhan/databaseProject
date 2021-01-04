@@ -10,10 +10,6 @@ import com.naman14.timber.R;
 import java.io.File;
 import java.io.FileFilter;
 
-/**
- * Created by nv95 on 06.12.16.
- */
-
 public class StorageSelectDialog implements DialogInterface.OnClickListener {
 
     private final AlertDialog mDialog;
@@ -29,12 +25,7 @@ public class StorageSelectDialog implements DialogInterface.OnClickListener {
         mDialog = new AlertDialog.Builder(context)
                 .setItems(names, this)
                 .setNegativeButton(android.R.string.cancel, null)
-                .setNeutralButton(R.string.menu_show_as_entry_default, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        mDirSelectListener.onDirSelected(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC));
-                    }
-                })
+                .setNeutralButton(R.string.menu_show_as_entry_default, (dialog, which) -> mDirSelectListener.onDirSelected(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)))
                 .setCancelable(true)
                 .setTitle(R.string.select_storage)
                 .create();

@@ -84,7 +84,6 @@ public class AudioDecoder {
     }
 
     private void selectTrack() {
-        // Select the first audio track we find, ignore the rest.
         trackIndex = -1;
         int numTracks = extractor.getTrackCount();
         for (int i = 0; i < numTracks; i++) {
@@ -253,11 +252,6 @@ public class AudioDecoder {
         return data;
     }
 
-    /**
-    * @param index last decoded output buffer's index
-     *
-     * This method must be called each time after decoding and and using the ByteBuffer sample
-     * */
     public void releaseOutputBuffer(int index){
         decoder.releaseOutputBuffer(index, false);
     }

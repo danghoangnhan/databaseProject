@@ -1,5 +1,4 @@
 package com.naman14.timber.activities;
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -18,9 +17,6 @@ import com.naman14.timber.utils.Constants;
 import com.naman14.timber.utils.NavigationUtils;
 import com.naman14.timber.utils.PreferencesUtility;
 
-/**
- * Created by naman on 01/01/16.
- */
 public class NowPlayingActivity extends BaseActivity implements ATEActivityThemeCustomizer, ATEToolbarCustomizer, ATEStatusBarCustomizer {
 
     @Override

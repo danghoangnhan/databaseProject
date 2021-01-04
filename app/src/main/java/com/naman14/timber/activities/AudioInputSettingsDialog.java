@@ -41,28 +41,20 @@ public class AudioInputSettingsDialog extends Dialog {
         RangeSeekBar<Float> trimRangeBar = findViewById(R.id.trim_range_bar);
         trimRangeBar.setRangeValues(0f, 1f);
         trimRangeBar.setNotifyWhileDragging(true);
-        trimRangeBar.setOnRangeSeekBarChangeListener(new RangeSeekBar.OnRangeSeekBarChangeListener<Float>() {
-            @Override
-            public void onRangeSeekBarValuesChanged(RangeSeekBar<?> bar, Float minValue, Float maxValue) {
-                setTrim(minValue, maxValue);
-            }
-        });
+        trimRangeBar.setOnRangeSeekBarChangeListener((bar, minValue, maxValue) -> setTrim(minValue, maxValue));
         trimRangeBar.setSelectedMinValue(0f);
         trimRangeBar.setSelectedMaxValue(1f);
         setTrim(0f, 1f);
 
         Button trimViewCrossButton = findViewById(R.id.done);
-        trimViewCrossButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try{
-                    float offset = Float.parseFloat(((EditText)findViewById(R.id.start_time_edit_text)).getText().toString());
-                    input.startOffsetUs = (long)(offset * 1000000);
-                }catch (Exception e){
+        trimViewCrossButton.setOnClickListener(v -> {
+            try{
+                float offset = Float.parseFloat(((EditText)findViewById(R.id.start_time_edit_text)).getText().toString());
+                input.startOffsetUs = (long)(offset * 1000000);
+            }catch (Exception e){
 
-                }
-                dismiss();
             }
+            dismiss();
         });
 
     }

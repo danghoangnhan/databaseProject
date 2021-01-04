@@ -31,6 +31,8 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -68,6 +70,7 @@ public class Nammu {
     /**
      * Returns true if the Activity has access to given permissions.
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean hasPermission(Activity activity, String permission) {
         return activity.checkSelfPermission(permission) == PackageManager.PERMISSION_GRANTED;
     }
@@ -75,6 +78,7 @@ public class Nammu {
     /**
      * Returns true if the Activity has access to a all given permission.
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean hasPermission(Activity activity, String[] permissions) {
         for (String permission : permissions) {
             if (activity.checkSelfPermission(permission) != PackageManager.PERMISSION_GRANTED) {
@@ -88,6 +92,7 @@ public class Nammu {
      * If we override other methods, lets do it as well, and keep name same as it is already weird enough.
      * Returns true if we should show explanation why we need this permission.
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean shouldShowRequestPermissionRationale(Activity activity, String permissions) {
         return activity.shouldShowRequestPermissionRationale(permissions);
     }
@@ -96,6 +101,7 @@ public class Nammu {
         askForPermission(activity, new String[]{permission}, permissionCallback);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static void askForPermission(Activity activity, String[] permissions, PermissionCallback permissionCallback) {
         if (permissionCallback == null) {
             return;
@@ -295,6 +301,7 @@ public class Nammu {
     /**
      * Not that needed method but if we override others it is good to keep same.
      */
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public static boolean checkPermission(String permissionName) {
         if (context == null) {
             throw new RuntimeException("Before comparing permissions you need to call Nammu.init(context)");

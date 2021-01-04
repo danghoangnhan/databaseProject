@@ -82,29 +82,26 @@ public class AlbumAdapter extends RecyclerView.Adapter<AlbumAdapter.ItemHolder> 
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                         if (isGrid) {
-                            new Palette.Builder(loadedImage).generate(new Palette.PaletteAsyncListener() {
-                                @Override
-                                public void onGenerated(Palette palette) {
-                                    Palette.Swatch swatch = palette.getVibrantSwatch();
-                                    if (swatch != null) {
-                                        int color = swatch.getRgb();
+                            new Palette.Builder(loadedImage).generate(palette -> {
+                                Palette.Swatch swatch = palette.getVibrantSwatch();
+                                if (swatch != null) {
+                                    int color = swatch.getRgb();
+                                    itemHolder.footer.setBackgroundColor(color);
+                                    int textColor = TimberUtils.getBlackWhiteColor(swatch.getTitleTextColor());
+                                    itemHolder.title.setTextColor(textColor);
+                                    itemHolder.artist.setTextColor(textColor);
+                                } else {
+                                    Palette.Swatch mutedSwatch = palette.getMutedSwatch();
+                                    if (mutedSwatch != null) {
+                                        int color = mutedSwatch.getRgb();
                                         itemHolder.footer.setBackgroundColor(color);
-                                        int textColor = TimberUtils.getBlackWhiteColor(swatch.getTitleTextColor());
+                                        int textColor = TimberUtils.getBlackWhiteColor(mutedSwatch.getTitleTextColor());
                                         itemHolder.title.setTextColor(textColor);
                                         itemHolder.artist.setTextColor(textColor);
-                                    } else {
-                                        Palette.Swatch mutedSwatch = palette.getMutedSwatch();
-                                        if (mutedSwatch != null) {
-                                            int color = mutedSwatch.getRgb();
-                                            itemHolder.footer.setBackgroundColor(color);
-                                            int textColor = TimberUtils.getBlackWhiteColor(mutedSwatch.getTitleTextColor());
-                                            itemHolder.title.setTextColor(textColor);
-                                            itemHolder.artist.setTextColor(textColor);
-                                        }
                                     }
-
-
                                 }
+
+
                             });
                         }
 

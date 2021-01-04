@@ -75,31 +75,10 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
     private View foreground;
     private boolean animate;
 
-    private Runnable playlistLastAdded = new Runnable() {
-        public void run() {
-            new loadLastAdded().execute("");
-        }
-    };
-    private Runnable playlistRecents = new Runnable() {
-        @Override
-        public void run() {
-            new loadRecentlyPlayed().execute("");
-
-        }
-    };
-    private Runnable playlistToptracks = new Runnable() {
-        @Override
-        public void run() {
-            new loadTopTracks().execute("");
-        }
-    };
-    private Runnable playlistUsercreated = new Runnable() {
-        @Override
-        public void run() {
-            new loadUserCreatedPlaylist().execute("");
-
-        }
-    };
+    private Runnable playlistLastAdded = () -> new loadLastAdded().execute("");
+    private Runnable playlistRecents = () -> new loadRecentlyPlayed().execute("");
+    private Runnable playlistToptracks = () -> new loadTopTracks().execute("");
+    private Runnable playlistUsercreated = () -> new loadUserCreatedPlaylist().execute("");
 
     @TargetApi(21)
     @Override
@@ -161,17 +140,14 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
             DragSortRecycler dragSortRecycler = new DragSortRecycler();
             dragSortRecycler.setViewHandleId(R.id.reorder);
 
-            dragSortRecycler.setOnItemMovedListener(new DragSortRecycler.OnItemMovedListener() {
-                @Override
-                public void onItemMoved(int from, int to) {
-                    Log.d("playlist", "onItemMoved " + from + " to " + to);
-                    Song song = mAdapter.getSongAt(from);
-                    mAdapter.removeSongAt(from);
-                    mAdapter.addSongTo(to, song);
-                    mAdapter.notifyDataSetChanged();
-                    MediaStore.Audio.Playlists.Members.moveItem(getContentResolver(),
-                            playlistID, from, to);
-                }
+            dragSortRecycler.setOnItemMovedListener((from, to) -> {
+                Log.d("playlist", "onItemMoved " + from + " to " + to);
+                Song song = mAdapter.getSongAt(from);
+                mAdapter.removeSongAt(from);
+                mAdapter.addSongTo(to, song);
+                mAdapter.notifyDataSetChanged();
+                MediaStore.Audio.Playlists.Members.moveItem(getContentResolver(),
+                        playlistID, from, to);
             });
 
             recyclerView.addItemDecoration(dragSortRecycler);
@@ -195,12 +171,7 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
         recyclerView.setAdapter(mAdapter);
         if (animate && TimberUtils.isLollipop()) {
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST, R.drawable.item_divider_white));
-                }
-            }, 250);
+            handler.postDelayed(() -> recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST, R.drawable.item_divider_white)), 250);
         } else
             recyclerView.addItemDecoration(new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL_LIST, R.drawable.item_divider_white));
     }
@@ -352,21 +323,13 @@ public class PlaylistDetailActivity extends BaseActivity implements ATEActivityT
                 .content("Are you sure you want to delete playlist " + playlistname.getText().toString() + " ?")
                 .positiveText("Delete")
                 .negativeText("Cancel")
-                .onPositive(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        PlaylistLoader.deletePlaylists(PlaylistDetailActivity.this, playlistID);
-                        Intent returnIntent = new Intent();
-                        setResult(Activity.RESULT_OK, returnIntent);
-                        finish();
-                    }
+                .onPositive((dialog, which) -> {
+                    PlaylistLoader.deletePlaylists(PlaylistDetailActivity.this, playlistID);
+                    Intent returnIntent = new Intent();
+                    setResult(Activity.RESULT_OK, returnIntent);
+                    finish();
                 })
-                .onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        dialog.dismiss();
-                    }
-                })
+                .onNegative((dialog, which) -> dialog.dismiss())
                 .show();
     }
 

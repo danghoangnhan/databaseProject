@@ -39,13 +39,8 @@ public class SongLoader {
             do {
                 long id = cursor.getLong(0);
                 String title = cursor.getString(1);
-                String artist = cursor.getString(2);
-                String album = cursor.getString(3);
                 int duration = cursor.getInt(4);
-                int trackNumber = cursor.getInt(5);
-                long artistId = cursor.getInt(6);
                 long albumId = cursor.getLong(7);
-
                 arrayList.add(new Song(id, albumId, title, duration,""));
             }
             while (cursor.moveToNext());
@@ -59,10 +54,7 @@ public class SongLoader {
         if ((cursor != null) && (cursor.moveToFirst())) {
             long id = cursor.getLong(0);
             String title = cursor.getString(1);
-            String artist = cursor.getString(2);
-            String album = cursor.getString(3);
             int duration = cursor.getInt(4);
-            int trackNumber = cursor.getInt(5);
             long albumId = cursor.getLong(7);
 
             song = new Song(id, albumId, title, duration, "");
@@ -96,13 +88,11 @@ public class SongLoader {
 
     public static Song getSongFromPath(String songPath, Context context) {
         ContentResolver cr = context.getContentResolver();
-
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String selection = MediaStore.Audio.Media.DATA;
         String[] selectionArgs = {songPath};
         String[] projection = new String[]{"_id", "title", "artist", "album", "duration", "track", "artist_id", "album_id"};
         String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
-
         Cursor cursor = cr.query(uri, projection, selection + "=?", selectionArgs, sortOrder);
 
         if (cursor != null && cursor.getCount() > 0) {

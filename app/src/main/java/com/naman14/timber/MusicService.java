@@ -12,9 +12,7 @@
  * KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
 package com.naman14.timber;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -94,7 +92,6 @@ import java.util.TreeSet;
 import de.Maxr1998.trackselectorlib.ModNotInstalledException;
 import de.Maxr1998.trackselectorlib.NotificationHelper;
 import de.Maxr1998.trackselectorlib.TrackItem;
-
 @SuppressLint("NewApi")
 public class MusicService extends Service {
     public static final String PLAYSTATE_CHANGED = "com.naman14.timber.playstatechanged";

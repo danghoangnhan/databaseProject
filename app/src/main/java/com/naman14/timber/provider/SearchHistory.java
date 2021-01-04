@@ -29,7 +29,7 @@ public class SearchHistory {
 
     private static SearchHistory sInstance = null;
 
-    private MusicDB mMusicDatabase = null;
+    private MusicDB mMusicDatabase;
 
     public SearchHistory(final Context context) {
         mMusicDatabase = MusicDB.getInstance(context);

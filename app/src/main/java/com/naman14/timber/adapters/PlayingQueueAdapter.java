@@ -89,34 +89,28 @@ public class PlayingQueueAdapter extends RecyclerView.Adapter<PlayingQueueAdapte
 
     private void setOnPopupMenuListener(ItemHolder itemHolder, final int position) {
 
-        itemHolder.menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        itemHolder.menu.setOnClickListener(v -> {
 
-                final PopupMenu menu = new PopupMenu(mContext, v);
-                menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        switch (item.getItemId()) {
-                            case R.id.popup_song_remove_queue:
-                                Log.v(TAG,"Removing " + position);
-                                MusicPlayer.removeTrackAtPosition(getSongAt(position).id, position);
-                                removeSongAt(position);
-                                notifyItemRemoved(position);
-                                break;
-                            case R.id.popup_song_play:
-                                MusicPlayer.playAll(mContext, getSongIds(), position, -1, TimberUtils.IdType.NA, false);
-                                break;
-                            case R.id.popup_song_addto_playlist:
-                                AddPlaylistDialog.newInstance(arraylist.get(position)).show(((AppCompatActivity) mContext).getSupportFragmentManager(), "ADD_PLAYLIST");
-                                break;
-                        }
-                        return false;
-                    }
-                });
-                menu.inflate(R.menu.popup_playing_queue);
-                menu.show();
-            }
+            final PopupMenu menu = new PopupMenu(mContext, v);
+            menu.setOnMenuItemClickListener(item -> {
+                switch (item.getItemId()) {
+                    case R.id.popup_song_remove_queue:
+                        Log.v(TAG,"Removing " + position);
+                        MusicPlayer.removeTrackAtPosition(getSongAt(position).id, position);
+                        removeSongAt(position);
+                        notifyItemRemoved(position);
+                        break;
+                    case R.id.popup_song_play:
+                        MusicPlayer.playAll(mContext, getSongIds(), position, -1, TimberUtils.IdType.NA, false);
+                        break;
+                    case R.id.popup_song_addto_playlist:
+                        AddPlaylistDialog.newInstance(arraylist.get(position)).show(((AppCompatActivity) mContext).getSupportFragmentManager(), "ADD_PLAYLIST");
+                        break;
+                }
+                return false;
+            });
+            menu.inflate(R.menu.popup_playing_queue);
+            menu.show();
         });
     }
 
@@ -165,19 +159,13 @@ public class PlayingQueueAdapter extends RecyclerView.Adapter<PlayingQueueAdapte
         @Override
         public void onClick(View v) {
             final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    MusicPlayer.setQueuePosition(getAdapterPosition());
-                    Handler handler1 = new Handler();
-                    handler1.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            notifyItemChanged(currentlyPlayingPosition);
-                            notifyItemChanged(getAdapterPosition());
-                        }
-                    }, 50);
-                }
+            handler.postDelayed(() -> {
+                MusicPlayer.setQueuePosition(getAdapterPosition());
+                Handler handler1 = new Handler();
+                handler1.postDelayed(() -> {
+                    notifyItemChanged(currentlyPlayingPosition);
+                    notifyItemChanged(getAdapterPosition());
+                }, 50);
             }, 100);
 
         }

@@ -120,40 +120,32 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
         }
     };
 
-    private Runnable navigateAlbum = new Runnable() {
-        public void run() {
-            long albumID = getIntent().getExtras().getLong(Constants.ALBUM_ID);
-            Fragment fragment = AlbumDetailFragment.newInstance(albumID, false, null);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
-        }
+    private Runnable navigateAlbum = () -> {
+        long albumID = getIntent().getExtras().getLong(Constants.ALBUM_ID);
+        Fragment fragment = AlbumDetailFragment.newInstance(albumID, false, null);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit();
     };
 
-    private Runnable navigateArtist = new Runnable() {
-        public void run() {
-            long artistID = getIntent().getExtras().getLong(Constants.ARTIST_ID);
-            Fragment fragment = ArtistDetailFragment.newInstance(artistID, false, null);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
-        }
+    private Runnable navigateArtist = () -> {
+        long artistID = getIntent().getExtras().getLong(Constants.ARTIST_ID);
+        Fragment fragment = ArtistDetailFragment.newInstance(artistID, false, null);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit();
     };
 
-    private Runnable navigateLyrics = new Runnable() {
-        public void run() {
-            Fragment fragment = new LyricsFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment).commit();
-        }
+    private Runnable navigateLyrics = () -> {
+        Fragment fragment = new LyricsFragment();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment).commit();
     };
 
-    private Runnable navigateNowplaying = new Runnable() {
-        public void run() {
-            navigateLibrary.run();
-            startActivity(new Intent(MainActivity.this, NowPlayingActivity.class));
-        }
+    private Runnable navigateNowplaying = () -> {
+        navigateLibrary.run();
+        startActivity(new Intent(MainActivity.this, NowPlayingActivity.class));
     };
 
     private final PermissionCallback permissionReadstorageCallback = new PermissionCallback() {
@@ -218,14 +210,11 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
         if(Intent.ACTION_VIEW.equals(action)) {
             Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    MusicPlayer.clearQueue();
-                    MusicPlayer.openFile(getIntent().getData().getPath());
-                    MusicPlayer.playOrPause();
-                    navigateNowplaying.run();
-                }
+            handler.postDelayed(() -> {
+                MusicPlayer.clearQueue();
+                MusicPlayer.openFile(getIntent().getData().getPath());
+                MusicPlayer.playOrPause();
+                navigateNowplaying.run();
             }, 350);
         }
 
@@ -319,13 +308,10 @@ public class MainActivity extends BaseActivity implements ATEActivityThemeCustom
 
     private void setupDrawerContent(NavigationView navigationView) {
         navigationView.setNavigationItemSelectedListener(
-                new NavigationView.OnNavigationItemSelectedListener() {
-                    @Override
-                    public boolean onNavigationItemSelected(final MenuItem menuItem) {
-                        updatePosition(menuItem);
-                        return true;
+                menuItem -> {
+                    updatePosition(menuItem);
+                    return true;
 
-                    }
                 });
     }
 

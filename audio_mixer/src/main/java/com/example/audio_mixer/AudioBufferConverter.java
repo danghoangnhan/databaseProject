@@ -19,7 +19,6 @@ public class AudioBufferConverter {
     private final AudioResampler mResampler;
 
     public AudioBufferConverter() {
-        // Create remixer and resampler.
         mRemixer = new DefaultAudioRemixer();
         mResampler = new DefaultAudioResampler();
     }
