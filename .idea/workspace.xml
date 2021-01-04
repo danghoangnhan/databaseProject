@@ -11,16 +11,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d98de30d-657e-4160-8e0c-398c4b978dc8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/adapters/TuneAdapter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/CreateFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_create.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/TuneFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/naman14/timber/fragments/TuneFragment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[R52N406X1PR]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -38,6 +39,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -47,6 +55,8 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="R52N406X1PR" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2021-01-04T05:44:43.811Z" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android-custom-viewE:/GitHub/databaseFinaleProject/app/src/main/java/com/naman14/timber/slidinguppanel/SlidingUpPanelLayout.java_SELECTED" value="SlidingUpPanelLayout" />
@@ -155,22 +165,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="259" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1609705886853" />
-    <state width="1877" height="383" key="GridCell.Tab.0.bottom" timestamp="1609726903496">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom" timestamp="1609739397096">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="383" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
-    <state width="1877" height="383" key="GridCell.Tab.0.center" timestamp="1609726903496">
+    <state width="1877" height="281" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397096" />
+    <state width="1877" height="281" key="GridCell.Tab.0.center" timestamp="1609739397095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="383" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
-    <state width="1877" height="383" key="GridCell.Tab.0.left" timestamp="1609726903496">
+    <state width="1877" height="281" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
+    <state width="1877" height="281" key="GridCell.Tab.0.left" timestamp="1609739397095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="383" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
-    <state width="1877" height="383" key="GridCell.Tab.0.right" timestamp="1609726903496">
+    <state width="1877" height="281" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right" timestamp="1609739397095">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="383" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609726903496" />
+    <state width="1877" height="281" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1609739397095" />
     <state x="512" y="230" width="587" height="534" key="find.popup" timestamp="1609701666251">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

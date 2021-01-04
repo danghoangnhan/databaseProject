@@ -56,8 +56,6 @@ public class CreateFragment extends Fragment {
         Filename = rootView.findViewById(R.id.newSongName);
         initViews();
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
-        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
-
         checkPermission();
         return  rootView;
     }
@@ -93,7 +91,6 @@ public class CreateFragment extends Fragment {
 
         try{
             audioMixer = new AudioMixer(outputPath);
-
             for(Input input: inputs){
                 AudioInput audioInput;
                 if(input.uri != null){
