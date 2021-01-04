@@ -55,7 +55,7 @@ public class CreateFragment extends Fragment {
         super.onCreate(savedInstanceState);
         rootView = inflater.inflate( R.layout.activity_create, container, false);
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-        //Filename = findViewById(R.id.newSongName);
+        //Filename = rootView.findViewById(R.id.newSongName);
         initViews();
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
