@@ -1,19 +1,4 @@
-/*
- * Copyright (C) 2015 Naman Dwivedi
- *
- * Licensed under the GNU General Public License v3
- *
- * This is free software: you can redistribute it and/or modify it
- * under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
- *
- * This software is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;
- * without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- * See the GNU General Public License for more details.
- */
-
 package com.naman14.timber.dataloaders;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
@@ -22,46 +7,40 @@ import android.net.Uri;
 import android.provider.BaseColumns;
 import android.provider.MediaStore;
 import android.text.TextUtils;
-
-import com.naman14.timber.models.Song;
+import com.naman14.timber.models.Tune;
 import com.naman14.timber.utils.PreferencesUtility;
 
 import java.util.ArrayList;
 import java.util.List;
-
-public class SongLoader {
+public class TuneLoader {
     private static final long[] sEmptyList = new long[0];
-    public static ArrayList<Song> getSongsForCursor(Cursor cursor) {
+    public static ArrayList<Tune> getTunesForCursor(Cursor cursor) {
         ArrayList arrayList = new ArrayList();
         if ((cursor != null) && (cursor.moveToFirst()))
             do {
                 long id = cursor.getLong(0);
                 String title = cursor.getString(1);
-                int duration = cursor.getInt(4);
-                long albumId = cursor.getLong(7);
-                arrayList.add(new Song(id, albumId, title, duration,""));
+
+                arrayList.add(new Tune(id, title,""));
             }
             while (cursor.moveToNext());
         if (cursor != null)
             cursor.close();
         return arrayList;
     }
-    public static Song getSongForCursor(Cursor cursor) {
-        Song song = new Song();
+    public static Tune getTuneForCursor(Cursor cursor) {
+        Tune tune = new Tune();
         if ((cursor != null) && (cursor.moveToFirst())) {
             long id = cursor.getLong(0);
             String title = cursor.getString(1);
-            int duration = cursor.getInt(4);
-            long albumId = cursor.getLong(7);
-
-            song = new Song(id, albumId, title, duration, "");
+            tune = new Tune(id, title, "");
         }
         if (cursor != null)
             cursor.close();
-        return song;
+        return tune;
     }
 
-    public static final long[] getSongListForCursor(Cursor cursor) {
+    public static final long[] getTuneListForCursor(Cursor cursor) {
         if (cursor == null) {
             return sEmptyList;
         }
@@ -83,7 +62,7 @@ public class SongLoader {
         return list;
     }
 
-    public static Song getSongFromPath(String songPath, Context context) {
+    public static Tune getTuneFromPath(String songPath, Context context) {
         ContentResolver cr = context.getContentResolver();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
         String selection = MediaStore.Audio.Media.DATA;
@@ -93,39 +72,39 @@ public class SongLoader {
         Cursor cursor = cr.query(uri, projection, selection + "=?", selectionArgs, sortOrder);
 
         if (cursor != null && cursor.getCount() > 0) {
-            Song song = getSongForCursor(cursor);
+            Tune tune = getTuneForCursor(cursor);
             cursor.close();
-            return song;
+            return tune;
         }
-        else return new Song();
+        else return new Tune();
     }
 
-    public static ArrayList<Song> getAllSongs(Context context) {
-        return getSongsForCursor(makeSongCursor(context, null, null));
+    public static ArrayList<Tune> getAllTunes(Context context) {
+        return getTunesForCursor(makeTuneCursor(context, null, null));
     }
     public static long[] getSongListInFolder(Context context, String path) {
         String[] whereArgs = new String[]{path + "%"};
-        return getSongListForCursor(makeSongCursor(context, MediaStore.Audio.Media.DATA + " LIKE ?", whereArgs, null));
+        return getTuneListForCursor(makeTuneCursor(context, MediaStore.Audio.Media.DATA + " LIKE ?", whereArgs, null));
     }
-    public static Song getSongForID(Context context, long id) {
-        return getSongForCursor(makeSongCursor(context, "_id=" + String.valueOf(id), null));
+    public static Tune getTuneForID(Context context, long id) {
+        return getTuneForCursor(makeTuneCursor(context, "_id=" + String.valueOf(id), null));
     }
 
-    public static List<Song> searchSongs(Context context, String searchString, int limit) {
-        ArrayList<Song> result = getSongsForCursor(makeSongCursor(context, "title LIKE ?", new String[]{searchString + "%"}));
+    public static List<Tune> searchTunes(Context context, String searchString, int limit) {
+        ArrayList<Tune> result = getTunesForCursor(makeTuneCursor(context, "title LIKE ?", new String[]{searchString + "%"}));
         if (result.size() < limit) {
-            result.addAll(getSongsForCursor(makeSongCursor(context, "title LIKE ?", new String[]{"%_" + searchString + "%"})));
+            result.addAll(getTunesForCursor(makeTuneCursor(context, "title LIKE ?", new String[]{"%_" + searchString + "%"})));
         }
         return result.size() < limit ? result : result.subList(0, limit);
     }
 
 
-    public static Cursor makeSongCursor(Context context, String selection, String[] paramArrayOfString) {
+    public static Cursor makeTuneCursor(Context context, String selection, String[] paramArrayOfString) {
         final String songSortOrder = PreferencesUtility.getInstance(context).getSongSortOrder();
-        return makeSongCursor(context, selection, paramArrayOfString, songSortOrder);
+        return makeTuneCursor(context, selection, paramArrayOfString, songSortOrder);
     }
 
-    private static Cursor makeSongCursor(Context context, String selection, String[] paramArrayOfString, String sortOrder) {
+    private static Cursor makeTuneCursor(Context context, String selection, String[] paramArrayOfString, String sortOrder) {
         String selectionStatement = "is_music=1 AND title != ''";
 
         if (!TextUtils.isEmpty(selection)) {
@@ -135,14 +114,13 @@ public class SongLoader {
 
     }
 
-    public static Song songFromFile(String filePath) {
+    public static Tune TuneFromFile(String filePath) {
         MediaMetadataRetriever mmr = new MediaMetadataRetriever();
         mmr.setDataSource(filePath);
-        return new Song(
-                -1,
+        return new Tune(
                 -1,
                 mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE),
-                Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)),
+                //Integer.parseInt(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)),
                 ""
         );
     }

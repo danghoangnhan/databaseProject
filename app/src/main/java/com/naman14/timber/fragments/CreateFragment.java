@@ -47,15 +47,13 @@ public class CreateFragment extends Fragment {
     private  View rootView;
     private List<com.naman14.timber.activities.Input> inputs = new ArrayList<>();
     private AudioMixer audioMixer = null;
-   Button b1;
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         rootView = inflater.inflate( R.layout.activity_create, container, false);
         Toolbar toolbar = rootView.findViewById(R.id.toolbar);
-        //Filename = rootView.findViewById(R.id.newSongName);
+        Filename = rootView.findViewById(R.id.newSongName);
         initViews();
         ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -78,7 +76,7 @@ public class CreateFragment extends Fragment {
             if(inputs.size() < 1){
                 Toast.makeText(this.getContext(), "Add at least one audio.", Toast.LENGTH_SHORT).show();
             }else{
-                //outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +Filename.getText().toString()+".mp3";
+                outputPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" +Filename.getText().toString()+".mp3";
                 startMixing();
             }
         });
